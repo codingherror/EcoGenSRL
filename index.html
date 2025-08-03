@@ -6,93 +6,135 @@
     <title>EcoGen Romania SRL - Investor Presentation</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f9f4;
+            background: linear-gradient(to bottom, #f4f9f4, #e0f7fa);
             color: #333;
             line-height: 1.6;
             scroll-behavior: smooth;
         }
         header {
-            background: linear-gradient(to right, #4CAF50, #2196F3);
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
             color: white;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         header h1 {
             font-family: 'Montserrat', sans-serif;
             font-size: 48px;
-            margin: 0;
+            margin-bottom: 10px;
         }
         header p {
             font-size: 24px;
-            margin: 10px 0 0;
+            opacity: 0.9;
         }
         nav {
             background: #fff;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            overflow-y: auto;
+            box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+            transition: width 0.3s, transform 0.3s;
+            z-index: 1000;
+        }
+        nav.minimized {
+            width: 80px;
+        }
+        nav.minimized .nav-links {
+            display: none;
+        }
+        nav.minimized .current-section {
+            display: block;
+            padding: 20px;
+            font-size: 16px;
+            color: #4CAF50;
+            text-align: center;
+        }
+        nav .current-section {
+            display: none;
+        }
+        nav .progress-bar {
+            width: 100%;
+            height: 5px;
+            background: #ddd;
+            margin-top: 10px;
+        }
+        nav .progress-bar .progress {
+            height: 100%;
+            background: #4CAF50;
+            width: 0;
+            transition: width 0.2s;
         }
         nav ul {
             list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            padding: 20px;
         }
         nav li {
-            margin: 0 15px;
+            margin: 15px 0;
         }
         nav a {
             text-decoration: none;
             color: #4CAF50;
-            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
             transition: color 0.3s;
         }
         nav a:hover {
             color: #2196F3;
         }
         section {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto 30px;
+            margin-left: 270px;
             background: #fff;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
         }
         section h2 {
             font-family: 'Montserrat', sans-serif;
             color: #4CAF50;
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: 36px;
             text-align: center;
+            margin-bottom: 30px;
         }
         .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
         .card {
             background: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #2196F3;
+            font-size: 24px;
+            margin-bottom: 15px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
+            font-size: 16px;
         }
         th, td {
             border: 1px solid #ddd;
@@ -102,112 +144,146 @@
         th {
             background: #4CAF50;
             color: white;
+            font-family: 'Montserrat', sans-serif;
         }
-        .chart-placeholder {
-            background: #e0f2f1;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-style: italic;
-            margin: 20px 0;
-            border-radius: 8px;
+        .chart {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            margin: 25px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background-size: cover;
+            background-position: center;
         }
         .equation {
             background: #f0f8ff;
-            padding: 15px;
+            padding: 20px;
             border-left: 5px solid #2196F3;
             margin: 20px 0;
             font-family: monospace;
             font-size: 16px;
+            border-radius: 5px;
+        }
+        .roi-calculator {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .roi-calculator input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .roi-calculator button {
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .roi-calculator button:hover {
+            background: #388E3C;
         }
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 20px;
-            font-size: 14px;
+            padding: 30px;
+            font-size: 16px;
+            border-top: 4px solid #4CAF50;
+            margin-left: 250px;
         }
         @media (max-width: 768px) {
             header h1 { font-size: 36px; }
             header p { font-size: 18px; }
+            section { margin-left: 0; }
             section h2 { font-size: 28px; }
-            nav ul { flex-direction: column; }
-            nav li { margin: 10px 0; }
+            nav { width: 100%; height: auto; position: sticky; top: 0; }
+            nav.minimized { width: 100%; }
+            nav.minimized .current-section { font-size: 14px; }
+            footer { margin-left: 0; }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>EcoGen Romania SRL</h1>
-        <p>Portable Solar Generators: Clean Power Revolutionizing Romania & EU</p>
+        <p>Powering the Green Revolution: Portable Solar Generators for Romania & EU</p>
     </header>
-    
-    <nav>
-        <ul>
+
+    <nav id="nav">
+        <div class="current-section"></div>
+        <div class="progress-bar"><div class="progress"></div></div>
+        <ul class="nav-links">
             <li><a href="#problem-solution">Problem & Solution</a></li>
             <li><a href="#market">Market Opportunity</a></li>
-            <li><a href="#product">Product Details</a></li>
-            <li><a href="#competitors">Competitive Landscape</a></li>
-            <li><a href="#business-model">Business Model & Financials</a></li>
+            <li><a href="#product">Product</a></li>
+            <li><a href="#competitors">Competitors</a></li>
+            <li><a href="#business-model">Financials</a></li>
             <li><a href="#grants">Grants & Funding</a></li>
-            <li><a href="#impact">Impact & Feasibility</a></li>
-            <li><a href="#equations">Equations & Models</a></li>
-            <li><a href="#investment">Investment Ask</a></li>
+            <li><a href="#impact">Impact</a></li>
+            <li><a href="#equations">Models</a></li>
+            <li><a href="#investment">Investment</a></li>
         </ul>
     </nav>
-    
+
     <section id="problem-solution">
         <h2>Problem & Solution</h2>
         <div class="content-grid">
             <div class="card">
-                <h3>The Diesel Dilemma</h3>
-                <p>Diesel generators: High emissions (0.8 kg CO2/kWh), fuel costs (€0.20/kWh), noise, and maintenance. Romania: 75% energy emissions from fossils; rural off-grid reliance. EU: Green Deal mandates 35% renewables by 2030.</p>
+                <h3>Diesel's Dirty Legacy</h3>
+                <p>Diesel generators emit 0.8 kg CO2/kWh, cost €0.20/kWh, and are noisy. Romania’s 75% fossil-based emissions and rural off-grid reliance demand a cleaner alternative. EU’s Green Deal pushes for 45% renewables by 2030.</p>
             </div>
             <div class="card">
-                <h3>Our Solution</h3>
-                <p>10kW portable solar generator: Integrated panels (22% efficiency), 20kWh Li-ion battery, AI-optimized app. Zero emissions, €0.15/kWh savings, silent, modular. Manufactured in Arad for efficiency.</p>
+                <h3>EcoGen’s Clean Power</h3>
+                <p>Our 10kW portable solar generator delivers zero-emission power (0.05 kg CO2/kWh), saves €0.15/kWh, and operates silently. Built in Arad with AI optimization for 20% efficiency gains.</p>
             </div>
         </div>
     </section>
-    
+
     <section id="market">
         <h2>Market Opportunity</h2>
-        <p>Romania's renewables CAGR >3%; €1.1B green energy market; PNRR €28.5B funding. EU: €630M Horizon Europe; solar to 600 GW by 2030. Target: 204,000+ prosumers, off-grid demand up 79%. TAM: €50B EU portable power.</p>
-        <div class="chart-placeholder">Market Growth Chart (Placeholder: Solar Capacity Projection)</div>
+        <p>Romania’s renewable market grows at >3% CAGR, hitting €1.94B by 2030. EU’s €630M Horizon Europe fuels 600 GW solar by 2030. With 204,000+ prosumers and 79% off-grid demand growth, our TAM is €50B.</p>
+        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Solar+Capacity+Growth+Chart')"></div>
     </section>
-    
+
     <section id="product">
-        <h2>Product Details</h2>
+        <h2>Our Product</h2>
         <div class="content-grid">
             <div class="card">
-                <h3>Core Features</h3>
+                <h3>Features</h3>
                 <ul>
-                    <li>10kW capacity with 20kWh battery</li>
-                    <li>AI app for 20% efficiency boost</li>
-                    <li>Hybrid options for transition</li>
-                    <li>CE/ISO 14001 compliant</li>
+                    <li>10kW capacity, 20kWh Li-ion battery</li>
+                    <li>22% efficient monocrystalline panels</li>
+                    <li>AI app boosts efficiency by 20%</li>
+                    <li>Hybrid diesel-solar option</li>
                 </ul>
             </div>
             <div class="card">
                 <h3>Services</h3>
-                <p>Customization, installation, 5-year warranty, maintenance via Arad hub.</p>
+                <p>Customization, installation, 5-year warranty, Arad-based maintenance. CE/ISO 14001 compliant for EU markets.</p>
             </div>
         </div>
+        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=EcoGen+Solar+Generator+Image')"></div>
     </section>
-    
+
     <section id="competitors">
-        <h2>Competitive Landscape</h2>
-        <p>Competitors: EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), Jackery (1kW, €1,500). USPs: 10kW capacity, local production (15% cost savings), AI efficiency. Goal: 5% Romania market share by 2030.</p>
-        <div class="chart-placeholder">Competitor Matrix (Price vs. Capacity)</div>
+        <h2>Competitive Edge</h2>
+        <p>Outpower EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500). Local Arad production saves 15% costs. USPs: 10kW capacity, AI, hybrid options. Target: 5% Romania market by 2030.</p>
+        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Competitor+Matrix')"></div>
     </section>
-    
+
     <section id="business-model">
-        <h2>Business Model & Financials</h2>
+        <h2>Financials</h2>
         <div class="content-grid">
             <div class="card">
-                <h3>Pricing & Costs</h3>
-                <p>Base: €8,000/unit (45% margin). Manufacturing: €4,500/unit. OPEX Year 1: €200,000.</p>
+                <h3>Business Model</h3>
+                <p>Pricing: €8,000/unit (45% margin). Costs: €4,500/unit. OPEX: €200K Year 1. Sales: 50 units Year 1 → 450 by Year 5.</p>
             </div>
             <div class="card">
                 <h3>Projections</h3>
@@ -219,56 +295,125 @@
                     <tr><td>4</td><td>3,200,000</td><td>2,968,475</td><td>4,837,975</td></tr>
                     <tr><td>5</td><td>6,400,000</td><td>6,156,899</td><td>10,994,874</td></tr>
                 </table>
-                <p>NPV: €7.3M; IRR: 376%; ROI: 3,665%.</p>
+                <p>NPV: €7.3M; IRR: 376%; ROI: 2,139% with grants.</p>
             </div>
         </div>
-        <div class="chart-placeholder">Revenue Growth Chart</div>
+        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Revenue+Growth+Graph')"></div>
     </section>
-    
+
     <section id="grants">
         <h2>Grants & Funding</h2>
-        <p>Romanian: AFM (€200K, PV program); PNRR (€457M solar). EU: Horizon Europe (€630M); LIFE/InnovFin. Need: €500K CAPEX; €200K grants; €300K investment. Timeline: Q4 2025 applications.</p>
+        <p>Securing €200K from AFM (€3.3B budget) and PNRR (€457M solar). EU: Horizon Europe (€630M), LIFE, EIB loans. Total CAPEX: €500K (40% grants, 60% investment). Apply Q4 2025.</p>
         <div class="content-grid">
-            <div class="card">Funding Pie: Grants 40%, Investment 60%</div>
+            <div class="card">Funding Split: Grants 40%, Investment 60%</div>
         </div>
+        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Funding+Pie+Chart')"></div>
     </section>
-    
+
     <section id="impact">
         <h2>Impact & Feasibility</h2>
         <div class="content-grid">
             <div class="card">
                 <h3>Environmental & Social</h3>
-                <p>CO2 Reduction: 8,250 tons over 5 years. Jobs: 20 in Arad. Alignment: Romania 38% green by 2030; EU net-zero 2050.</p>
+                <p>Save 8,250 tons CO2 (380,000 trees). Create 20 jobs in Arad. Boost €1M local economy. Align with EU 45% renewables, Romania 38% by 2030.</p>
             </div>
             <div class="card">
                 <h3>Feasibility</h3>
-                <p>High (8/10): Market trends, grants, projections align. Risks mitigated via diversification.</p>
+                <p>High (8/10): Policy tailwinds, grants, and robust projections. Risks mitigated via dual suppliers, diversified funding.</p>
             </div>
         </div>
     </section>
-    
+
     <section id="equations">
-        <h2>Equations & Models</h2>
-        <div class="equation">
-            Renewable CAGR: (Target/Current)^{1/t} - 1<br>
-            EU: 8.45%; Romania Solar: 11.98%.
-        </div>
-        <div class="equation">
-            CO2 Saved: (0.8 - 0.05) × Annual kWh × Units = 8,250 tons.
-        </div>
-        <div class="equation">
-            ROI: (Net Profit + Grants)/Investment × 100% = 2,139%.
-        </div>
+        <h2>Policy-Driven Models</h2>
+        <div class="equation">Renewable CAGR: (Target/Current)^(1/5) - 1 = 8.45% (EU), 11.98% (Romania Solar)</div>
+        <div class="equation">CO2 Saved: (0.8 - 0.05) × 10,000 kWh × 1,550 Units = 8,250 tons</div>
+        <div class="equation">ROI: (Net Profit + €200K Grants)/€300K Investment × 100% = 2,139%</div>
     </section>
-    
+
     <section id="investment">
-        <h2>Investment Ask</h2>
-        <p>€300,000 for 15% equity (€2M pre-money). Use: Equipment 40%, Warehouse 40%, Marketing 20%. Exit: 10x return in 5 years. Join the green revolution!</p>
-        <div class="chart-placeholder">ROI Projection</div>
+        <h2>Investment Opportunity</h2>
+        <p>€300,000 for 15% equity (€2M pre-money). Use: 40% equipment, 40% warehouse, 20% marketing. Exit: 10x return via acquisition. Join Romania’s green boom!</p>
+        <div class="roi-calculator">
+            <h3>Customer ROI Calculator</h3>
+            <input type="number" id="hours" placeholder="Daily Usage Hours (e.g., 8)" required>
+            <input type="number" id="years" placeholder="Years (e.g., 5)" required>
+            <input type="number" id="dieselCost" placeholder="Diesel Cost per kWh (€, e.g., 0.20)" required>
+            <button onclick="calculateROI()">Calculate Savings</button>
+            <div id="roiResult"></div>
+        </div>
+        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Investor+ROI+Projection')"></div>
     </section>
-    
+
     <footer>
-        <p>Contact: [Your Email] | www.ecogen.ro | August 2025</p>
+        <p>Contact: info@ecogen.ro | www.ecogen.ro | August 2025</p>
     </footer>
+
+    <script>
+        // Dynamic Navigation and Progress Bar
+        const nav = document.getElementById('nav');
+        const currentSection = document.querySelector('.current-section');
+        const progress = document.querySelector('.progress');
+        const sections = document.querySelectorAll('section');
+        let isScrolling = false;
+
+        window.addEventListener('scroll', () => {
+            if (!isScrolling) {
+                nav.classList.add('minimized');
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (scrollY >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                currentSection.textContent = current
+                    ? document.querySelector(`a[href="#${current}"]`).textContent
+                    : 'Scroll to Start';
+                
+                // Progress Bar
+                const totalHeight = document.body.scrollHeight - window.innerHeight;
+                const progressPercent = (scrollY / totalHeight) * 100;
+                progress.style.width = `${progressPercent}%`;
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                isScrolling = true;
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => { isScrolling = false; }, 1000);
+            });
+        });
+
+        // ROI Calculator
+        function calculateROI() {
+            const hours = parseFloat(document.getElementById('hours').value);
+            const years = parseInt(document.getElementById('years').value);
+            const dieselCost = parseFloat(document.getElementById('dieselCost').value);
+            const solarPrice = 8000, dieselPrice = 5000;
+            const annualKWh = hours * 10 * 365;
+            const dieselAnnualCost = annualKWh * dieselCost;
+            const solarAnnualCost = annualKWh * 0.05;
+            const annualSavings = dieselAnnualCost - solarAnnualCost;
+            const totalSavings = annualSavings * years;
+            const upfrontDiff = solarPrice - dieselPrice;
+            const payback = upfrontDiff / annualSavings;
+            const co2Reduction = annualKWh * (0.8 - 0.05) * years / 1000;
+
+            document.getElementById('roiResult').innerHTML = `
+                <p><strong>Results:</strong></p>
+                <p>Annual Savings: €${annualSavings.toFixed(2)}</p>
+                <p>Total Savings: €${totalSavings.toFixed(2)}</p>
+                <p>Payback Period: ${payback.toFixed(2)} years</p>
+                <p>CO2 Reduced: ${co2Reduction.toFixed(2)} tons</p>
+                <p>${payback < years ? 'Profitable Investment!' : 'Adjust usage for better ROI.'}</p>
+            `;
+        }
+    </script>
 </body>
 </html>
