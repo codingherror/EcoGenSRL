@@ -24,6 +24,10 @@
             padding: 60px 20px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         header h1 {
             font-family: 'Orbitron', sans-serif;
@@ -36,7 +40,7 @@
         }
         nav {
             background: #fff;
-            width: 250px;
+            width: 60px;
             height: 100vh;
             position: fixed;
             top: 0;
@@ -45,25 +49,25 @@
             transition: width 0.3s, transform 0.3s;
             z-index: 1000;
         }
-        nav.minimized {
-            width: 60px;
+        nav:hover, nav.expanded {
+            width: 250px;
         }
         nav.hidden {
-            transform: translateX(-250px);
+            transform: translateX(-60px);
         }
-        nav.minimized .nav-links, nav.hidden .nav-links {
+        nav .nav-links {
+            display: block;
+        }
+        nav.hidden .nav-links, nav:not(.expanded) .nav-links {
             display: none;
         }
         nav .current-section {
-            display: none;
+            display: block;
             padding: 20px 10px;
             font-size: 14px;
             color: #4CAF50;
             text-align: center;
             font-family: 'Orbitron', sans-serif;
-        }
-        nav.minimized .current-section, nav.hidden .current-section {
-            display: block;
         }
         nav .progress-bar {
             width: 100%;
@@ -132,6 +136,10 @@
             background: #fff;
             border-radius: 12px;
             box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         section h2 {
             font-family: 'Orbitron', sans-serif;
@@ -145,6 +153,7 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
             justify-content: center;
+            width: 100%;
         }
         .card {
             background: #f9f9f9;
@@ -153,6 +162,9 @@
             box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: justify;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         .card:hover {
             transform: translateY(-5px);
@@ -193,8 +205,32 @@
             border-radius: 12px;
             margin: 20px auto;
             box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);
-            background-size: cover;
-            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .solar-icon {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #e0f2f1;
+        }
+        .solar-icon::before {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #4CAF50 10%, transparent 15%), linear-gradient(45deg, #4CAF50 20%, #2196F3 80%);
+            border-radius: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+        @keyframes glow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
         .equation {
             background: #f0f8ff;
@@ -215,6 +251,10 @@
             margin: 20px auto;
             max-width: 800px;
             box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .roi-calculator input {
             padding: 10px;
@@ -224,9 +264,6 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: 'Exo 2', sans-serif;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
         }
         .roi-calculator button {
             background: #4CAF50;
@@ -237,8 +274,6 @@
             cursor: pointer;
             transition: background 0.3s;
             font-family: 'Orbitron', sans-serif;
-            display: block;
-            margin: 10px auto;
         }
         .roi-calculator button:hover {
             background: #388E3C;
@@ -246,6 +281,7 @@
         .roi-calculator #roiResult {
             text-align: center;
             font-size: 15px;
+            margin-top: 10px;
         }
         footer {
             background: #333;
@@ -254,20 +290,24 @@
             padding: 25px;
             font-size: 16px;
             border-top: 4px solid #4CAF50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         @media (max-width: 768px) {
             header h1 { font-size: 30px; }
             header p { font-size: 18px; }
             section h2 { font-size: 26px; }
             nav { width: 100%; height: auto; position: fixed; top: 0; left: 0; }
-            nav.minimized { width: 100%; height: 60px; }
+            nav.expanded { width: 100%; height: auto; }
             nav.hidden { transform: translateX(0); height: 60px; }
-            nav.minimized .current-section, nav.hidden .current-section { font-size: 12px; padding: 10px; }
+            nav .current-section { font-size: 12px; padding: 10px; }
             nav .open-btn { left: 10px; top: 10px; }
             .content-grid { grid-template-columns: 1fr; }
             .card { padding: 15px; }
             table { font-size: 14px; }
             table th, table td { padding: 8px; }
+            .chart { height: 200px; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
             section { max-width: 90%; }
@@ -281,7 +321,7 @@
         <p>Leading the Green Revolution with Portable Solar Generators</p>
     </header>
 
-    <nav id="nav">
+    <nav id="nav" class="minimized">
         <button class="toggle-btn" onclick="toggleNav()">X</button>
         <button class="open-btn" onclick="openNav()">☰</button>
         <div class="current-section">Scroll to Start</div>
@@ -324,7 +364,9 @@
                 <p>Our total addressable market spans a €50 billion portable power sector, with strong demand in agriculture and rural areas.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/solar-growth-chart.png')"></div>
+        <div class="chart">
+            <canvas id="marketChart"></canvas>
+        </div>
     </section>
 
     <section id="product">
@@ -342,7 +384,7 @@
                 <p>Maintenance services provided from our Arad hub, ensuring reliability and customer satisfaction.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/solar-generator.png')"></div>
+        <div class="chart solar-icon"></div>
     </section>
 
     <section id="competitors">
@@ -354,7 +396,9 @@
                 <p>Our goal is to capture 5% of Romania’s €1.94 billion renewable market by 2030.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/competitor-matrix.png')"></div>
+        <div class="chart">
+            <canvas id="competitorChart"></canvas>
+        </div>
     </section>
 
     <section id="business-model">
@@ -378,7 +422,9 @@
                 <p>NPV: €7.3M; IRR: 376%; ROI: 2,139% with grants.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/revenue-growth.png')"></div>
+        <div class="chart">
+            <canvas id="financialChart"></canvas>
+        </div>
     </section>
 
     <section id="grants">
@@ -390,7 +436,9 @@
                 <p>Total CAPEX: €500,000 (40% grants, 60% investment). Applications begin Q4 2025.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/funding-pie.png')"></div>
+        <div class="chart">
+            <canvas id="fundingChart"></canvas>
+        </div>
     </section>
 
     <section id="impact">
@@ -434,7 +482,9 @@
             <button onclick="calculateROI()">Calculate Savings</button>
             <div id="roiResult"></div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/roi-projection.png')"></div>
+        <div class="chart">
+            <canvas id="roiChart"></canvas>
+        </div>
     </section>
 
     <footer>
@@ -446,11 +496,12 @@
         function toggleNav() {
             const nav = document.getElementById('nav');
             nav.classList.toggle('hidden');
+            nav.classList.remove('expanded');
         }
         function openNav() {
             const nav = document.getElementById('nav');
             nav.classList.remove('hidden');
-            nav.classList.add('minimized');
+            nav.classList.add('expanded');
         }
 
         // Dynamic Navigation and Progress Bar
@@ -479,10 +530,9 @@
         }
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100 && !nav.classList.contains('hidden')) {
+            if (!nav.classList.contains('hidden')) {
                 nav.classList.add('minimized');
-            } else if (window.scrollY <= 100 && !nav.classList.contains('hidden')) {
-                nav.classList.remove('minimized');
+                nav.classList.remove('expanded');
             }
             if (!isScrolling) {
                 updateNav();
@@ -531,6 +581,112 @@
                 <p>${payback < years ? 'Profitable Investment!' : 'Adjust usage for better ROI.'}</p>
             `;
         }
+
+        // Canvas Graphics
+        // Market Opportunity: Line Graph
+        const marketChart = document.getElementById('marketChart').getContext('2d');
+        function drawMarketChart() {
+            marketChart.clearRect(0, 0, 800, 250);
+            marketChart.beginPath();
+            marketChart.strokeStyle = '#4CAF50';
+            marketChart.lineWidth = 4;
+            marketChart.moveTo(50, 200);
+            for (let i = 0; i <= 5; i++) {
+                const x = 50 + i * 140;
+                const y = 200 - (5.9 + i * (10.39 - 5.9) / 5) * 15;
+                marketChart.lineTo(x, y);
+            }
+            marketChart.stroke();
+            marketChart.fillStyle = '#4CAF50';
+            marketChart.fillText('Solar Growth (GW)', 50, 230);
+        }
+        drawMarketChart();
+
+        // Competitors: Scatter Plot
+        const competitorChart = document.getElementById('competitorChart').getContext('2d');
+        function drawCompetitorChart() {
+            competitorChart.clearRect(0, 0, 800, 250);
+            competitorChart.fillStyle = '#2196F3';
+            competitorChart.beginPath();
+            // EcoFlow, Bluetti, Jackery, EcoGen
+            const points = [
+                { x: 3.6 * 100, y: 200 - (3000 / 8000) * 150, label: 'EcoFlow' },
+                { x: 2 * 100, y: 200 - (2500 / 8000) * 150, label: 'Bluetti' },
+                { x: 1 * 100, y: 200 - (1500 / 8000) * 150, label: 'Jackery' },
+                { x: 10 * 100, y: 200 - (8000 / 8000) * 150, label: 'EcoGen' }
+            ];
+            points.forEach(p => {
+                competitorChart.beginPath();
+                competitorChart.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+                competitorChart.fill();
+                competitorChart.fillText(p.label, p.x + 10, p.y);
+            });
+        }
+        drawCompetitorChart();
+
+        // Financials: Bar and Line Graph
+        const financialChart = document.getElementById('financialChart').getContext('2d');
+        function drawFinancialChart() {
+            financialChart.clearRect(0, 0, 800, 250);
+            const revenues = [400000, 800000, 1600000, 3200000, 6400000];
+            const ebitda = [200000, 590000, 1379500, 2968475, 6156899];
+            for (let i = 0; i < 5; i++) {
+                const x = 50 + i * 140;
+                const barHeight = (revenues[i] / 6400000) * 150;
+                financialChart.fillStyle = '#4CAF50';
+                financialChart.fillRect(x, 200 - barHeight, 50, barHeight);
+                financialChart.beginPath();
+                financialChart.strokeStyle = '#2196F3';
+                financialChart.lineWidth = 2;
+                financialChart.moveTo(50, 200 - (ebitda[0] / 6400000) * 150);
+                for (let j = 0; j <= i; j++) {
+                    financialChart.lineTo(50 + j * 140, 200 - (ebitda[j] / 6400000) * 150);
+                }
+                financialChart.stroke();
+            }
+            financialChart.fillStyle = '#4CAF50';
+            financialChart.fillText('Revenue & EBITDA (€)', 50, 230);
+        }
+        drawFinancialChart();
+
+        // Funding: Pie Chart
+        const fundingChart = document.getElementById('fundingChart').getContext('2d');
+        function drawFundingChart() {
+            fundingChart.clearRect(0, 0, 800, 250);
+            fundingChart.beginPath();
+            fundingChart.fillStyle = '#4CAF50';
+            fundingChart.arc(400, 125, 80, 0, 0.4 * 2 * Math.PI);
+            fundingChart.lineTo(400, 125);
+            fundingChart.fill();
+            fundingChart.beginPath();
+            fundingChart.fillStyle = '#2196F3';
+            fundingChart.arc(400, 125, 80, 0.4 * 2 * Math.PI, 2 * Math.PI);
+            fundingChart.lineTo(400, 125);
+            fundingChart.fill();
+            fundingChart.fillStyle = '#333';
+            fundingChart.fillText('Grants (40%)', 300, 100);
+            fundingChart.fillText('Investment (60%)', 450, 100);
+        }
+        drawFundingChart();
+
+        // Investment: ROI Curve
+        const roiChart = document.getElementById('roiChart').getContext('2d');
+        function drawRoiChart() {
+            roiChart.clearRect(0, 0, 800, 250);
+            roiChart.beginPath();
+            roiChart.strokeStyle = '#4CAF50';
+            roiChart.lineWidth = 4;
+            roiChart.moveTo(50, 200);
+            for (let i = 0; i <= 5; i++) {
+                const x = 50 + i * 140;
+                const y = 200 - (i / 5) * 150;
+                roiChart.lineTo(x, y);
+            }
+            roiChart.stroke();
+            roiChart.fillStyle = '#4CAF50';
+            roiChart.fillText('ROI (2,139%)', 50, 230);
+        }
+        drawRoiChart();
     </script>
 </body>
 </html>
