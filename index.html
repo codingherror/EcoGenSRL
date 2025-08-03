@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoGen Romania SRL - Investor Presentation</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -198,39 +199,17 @@
             color: white;
             font-family: 'Orbitron', sans-serif;
         }
-        .chart {
+        .mermaid {
             width: 100%;
             max-width: 800px;
-            height: 250px;
-            border-radius: 12px;
             margin: 20px auto;
+            border-radius: 12px;
             box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);
-            position: relative;
             overflow: hidden;
         }
-        canvas {
+        .mermaid svg {
             width: 100%;
-            height: 100%;
-        }
-        .solar-icon {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: #e0f2f1;
-        }
-        .solar-icon::before {
-            content: '';
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, #4CAF50 10%, transparent 15%), linear-gradient(45deg, #4CAF50 20%, #2196F3 80%);
-            border-radius: 10px;
-            animation: glow 2s ease-in-out infinite;
-        }
-        @keyframes glow {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+            height: auto;
         }
         .equation {
             background: #f0f8ff;
@@ -307,7 +286,7 @@
             .card { padding: 15px; }
             table { font-size: 14px; }
             table th, table td { padding: 8px; }
-            .chart { height: 200px; }
+            .mermaid { max-width: 100%; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
             section { max-width: 90%; }
@@ -364,8 +343,21 @@
                 <p>Our total addressable market spans a €50 billion portable power sector, with strong demand in agriculture and rural areas.</p>
             </div>
         </div>
-        <div class="chart">
-            <canvas id="marketChart"></canvas>
+        <div class="mermaid">
+            ```mermaid
+            graph TD
+                A[2025: 5.9 GW] --> B[2026: 6.8 GW]
+                B --> C[2027: 7.8 GW]
+                C --> D[2028: 8.8 GW]
+                D --> E[2029: 9.8 GW]
+                E --> F[2030: 10.39 GW]
+                style A fill:#4CAF50,stroke:#2196F3
+                style B fill:#4CAF50,stroke:#2196F3
+                style C fill:#4CAF50,stroke:#2196F3
+                style D fill:#4CAF50,stroke:#2196F3
+                style E fill:#4CAF50,stroke:#2196F3
+                style F fill:#4CAF50,stroke:#2196F3
+            ```
         </div>
     </section>
 
@@ -384,7 +376,27 @@
                 <p>Maintenance services provided from our Arad hub, ensuring reliability and customer satisfaction.</p>
             </div>
         </div>
-        <div class="chart solar-icon"></div>
+        <div class="mermaid">
+            ```mermaid
+            classDiagram
+                class SolarGenerator {
+                    +10kW Capacity
+                    +20kWh Li-ion Battery
+                    +22% Efficient Panels
+                    +AI Optimization App
+                    +Hybrid Option
+                }
+                SolarGenerator --> Services : Includes
+                class Services {
+                    +Customization
+                    +Installation
+                    +5-Year Warranty
+                    +Maintenance
+                }
+                style SolarGenerator fill:#4CAF50,stroke:#2196F3
+                style Services fill:#2196F3,stroke:#4CAF50
+            ```
+        </div>
     </section>
 
     <section id="competitors">
@@ -396,8 +408,19 @@
                 <p>Our goal is to capture 5% of Romania’s €1.94 billion renewable market by 2030.</p>
             </div>
         </div>
-        <div class="chart">
-            <canvas id="competitorChart"></canvas>
+        <div class="mermaid">
+            ```mermaid
+            graph TD
+                A[EcoFlow: 3.6kW, €3000] -->|Capacity| B[2]
+                A -->|Price| C[3]
+                D[Bluetti: 2kW, €2500] -->|Capacity| E[1]
+                D -->|Price| F[2]
+                G[Jackery: 1kW, €1500] -->|Capacity| H[0]
+                G -->|Price| I[1]
+                J[EcoGen: 10kW, €8000] -->|Capacity| K[4]
+                J -->|Price| L[4]
+                style J fill:#4CAF50,stroke:#2196F3
+            ```
         </div>
     </section>
 
@@ -422,8 +445,25 @@
                 <p>NPV: €7.3M; IRR: 376%; ROI: 2,139% with grants.</p>
             </div>
         </div>
-        <div class="chart">
-            <canvas id="financialChart"></canvas>
+        <div class="mermaid">
+            ```mermaid
+            gantt
+                title Revenue & EBITDA (€)
+                dateFormat  YYYY
+                axisFormat  %Y
+                section Revenue
+                Year 1 : 2025, 1y
+                Year 2 : 2026, 1y
+                Year 3 : 2027, 1y
+                Year 4 : 2028, 1y
+                Year 5 : 2029, 1y
+                section EBITDA
+                Year 1 : 2025, 1y
+                Year 2 : 2026, 1y
+                Year 3 : 2027, 1y
+                Year 4 : 2028, 1y
+                Year 5 : 2029, 1y
+            ```
         </div>
     </section>
 
@@ -436,8 +476,13 @@
                 <p>Total CAPEX: €500,000 (40% grants, 60% investment). Applications begin Q4 2025.</p>
             </div>
         </div>
-        <div class="chart">
-            <canvas id="fundingChart"></canvas>
+        <div class="mermaid">
+            ```mermaid
+            pie
+                title Funding Split
+                "Grants" : 40
+                "Investment" : 60
+            ```
         </div>
     </section>
 
@@ -474,6 +519,16 @@
                 <p>Exit strategy offers a 10x return via acquisition within 5 years.</p>
             </div>
         </div>
+        <div class="mermaid">
+            ```mermaid
+            graph TD
+                A[Year 1: 0%] --> B[Year 2: 500%]
+                B --> C[Year 3: 1000%]
+                C --> D[Year 4: 1500%]
+                D --> E[Year 5: 2139%]
+                style E fill:#4CAF50,stroke:#2196F3
+            ```
+        </div>
         <div class="roi-calculator">
             <h3>Customer ROI Calculator</h3>
             <input type="number" id="hours" placeholder="Daily Usage Hours (e.g., 8)" required>
@@ -482,9 +537,6 @@
             <button onclick="calculateROI()">Calculate Savings</button>
             <div id="roiResult"></div>
         </div>
-        <div class="chart">
-            <canvas id="roiChart"></canvas>
-        </div>
     </section>
 
     <footer>
@@ -492,6 +544,18 @@
     </footer>
 
     <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            themeVariables: {
+                primaryColor: '#4CAF50',
+                secondaryColor: '#2196F3',
+                lineColor: '#2196F3',
+                textColor: '#333'
+            }
+        });
+
         // Navigation Toggle
         function toggleNav() {
             const nav = document.getElementById('nav');
@@ -581,112 +645,6 @@
                 <p>${payback < years ? 'Profitable Investment!' : 'Adjust usage for better ROI.'}</p>
             `;
         }
-
-        // Canvas Graphics
-        // Market Opportunity: Line Graph
-        const marketChart = document.getElementById('marketChart').getContext('2d');
-        function drawMarketChart() {
-            marketChart.clearRect(0, 0, 800, 250);
-            marketChart.beginPath();
-            marketChart.strokeStyle = '#4CAF50';
-            marketChart.lineWidth = 4;
-            marketChart.moveTo(50, 200);
-            for (let i = 0; i <= 5; i++) {
-                const x = 50 + i * 140;
-                const y = 200 - (5.9 + i * (10.39 - 5.9) / 5) * 15;
-                marketChart.lineTo(x, y);
-            }
-            marketChart.stroke();
-            marketChart.fillStyle = '#4CAF50';
-            marketChart.fillText('Solar Growth (GW)', 50, 230);
-        }
-        drawMarketChart();
-
-        // Competitors: Scatter Plot
-        const competitorChart = document.getElementById('competitorChart').getContext('2d');
-        function drawCompetitorChart() {
-            competitorChart.clearRect(0, 0, 800, 250);
-            competitorChart.fillStyle = '#2196F3';
-            competitorChart.beginPath();
-            // EcoFlow, Bluetti, Jackery, EcoGen
-            const points = [
-                { x: 3.6 * 100, y: 200 - (3000 / 8000) * 150, label: 'EcoFlow' },
-                { x: 2 * 100, y: 200 - (2500 / 8000) * 150, label: 'Bluetti' },
-                { x: 1 * 100, y: 200 - (1500 / 8000) * 150, label: 'Jackery' },
-                { x: 10 * 100, y: 200 - (8000 / 8000) * 150, label: 'EcoGen' }
-            ];
-            points.forEach(p => {
-                competitorChart.beginPath();
-                competitorChart.arc(p.x, p.y, 5, 0, 2 * Math.PI);
-                competitorChart.fill();
-                competitorChart.fillText(p.label, p.x + 10, p.y);
-            });
-        }
-        drawCompetitorChart();
-
-        // Financials: Bar and Line Graph
-        const financialChart = document.getElementById('financialChart').getContext('2d');
-        function drawFinancialChart() {
-            financialChart.clearRect(0, 0, 800, 250);
-            const revenues = [400000, 800000, 1600000, 3200000, 6400000];
-            const ebitda = [200000, 590000, 1379500, 2968475, 6156899];
-            for (let i = 0; i < 5; i++) {
-                const x = 50 + i * 140;
-                const barHeight = (revenues[i] / 6400000) * 150;
-                financialChart.fillStyle = '#4CAF50';
-                financialChart.fillRect(x, 200 - barHeight, 50, barHeight);
-                financialChart.beginPath();
-                financialChart.strokeStyle = '#2196F3';
-                financialChart.lineWidth = 2;
-                financialChart.moveTo(50, 200 - (ebitda[0] / 6400000) * 150);
-                for (let j = 0; j <= i; j++) {
-                    financialChart.lineTo(50 + j * 140, 200 - (ebitda[j] / 6400000) * 150);
-                }
-                financialChart.stroke();
-            }
-            financialChart.fillStyle = '#4CAF50';
-            financialChart.fillText('Revenue & EBITDA (€)', 50, 230);
-        }
-        drawFinancialChart();
-
-        // Funding: Pie Chart
-        const fundingChart = document.getElementById('fundingChart').getContext('2d');
-        function drawFundingChart() {
-            fundingChart.clearRect(0, 0, 800, 250);
-            fundingChart.beginPath();
-            fundingChart.fillStyle = '#4CAF50';
-            fundingChart.arc(400, 125, 80, 0, 0.4 * 2 * Math.PI);
-            fundingChart.lineTo(400, 125);
-            fundingChart.fill();
-            fundingChart.beginPath();
-            fundingChart.fillStyle = '#2196F3';
-            fundingChart.arc(400, 125, 80, 0.4 * 2 * Math.PI, 2 * Math.PI);
-            fundingChart.lineTo(400, 125);
-            fundingChart.fill();
-            fundingChart.fillStyle = '#333';
-            fundingChart.fillText('Grants (40%)', 300, 100);
-            fundingChart.fillText('Investment (60%)', 450, 100);
-        }
-        drawFundingChart();
-
-        // Investment: ROI Curve
-        const roiChart = document.getElementById('roiChart').getContext('2d');
-        function drawRoiChart() {
-            roiChart.clearRect(0, 0, 800, 250);
-            roiChart.beginPath();
-            roiChart.strokeStyle = '#4CAF50';
-            roiChart.lineWidth = 4;
-            roiChart.moveTo(50, 200);
-            for (let i = 0; i <= 5; i++) {
-                const x = 50 + i * 140;
-                const y = 200 - (i / 5) * 150;
-                roiChart.lineTo(x, y);
-            }
-            roiChart.stroke();
-            roiChart.fillStyle = '#4CAF50';
-            roiChart.fillText('ROI (2,139%)', 50, 230);
-        }
-        drawRoiChart();
     </script>
 </body>
 </html>
