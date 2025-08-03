@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoGen Romania SRL - Investor Presentation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,11 +12,12 @@
             box-sizing: border-box;
         }
         body {
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(to bottom, #f4f9f4, #e0f7fa);
+            font-family: 'Exo 2', sans-serif;
+            background: linear-gradient(to bottom, #A8E6CF, #D5F5E3, #E0F7FA);
             color: #333;
             line-height: 1.6;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         header {
             background: linear-gradient(135deg, #4CAF50, #2196F3);
@@ -26,7 +27,7 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         header h1 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-size: 48px;
             margin-bottom: 10px;
         }
@@ -46,6 +47,9 @@
             transition: width 0.3s, transform 0.3s;
             z-index: 1000;
         }
+        nav:hover {
+            width: 250px;
+        }
         nav.minimized {
             width: 80px;
         }
@@ -55,24 +59,27 @@
         nav.minimized .current-section {
             display: block;
             padding: 20px;
-            font-size: 16px;
+            font-size: 14px;
             color: #4CAF50;
             text-align: center;
+            font-family: 'Orbitron', sans-serif;
         }
         nav .current-section {
             display: none;
         }
         nav .progress-bar {
             width: 100%;
-            height: 5px;
-            background: #ddd;
+            height: 6px;
+            background: #e0e0e0;
             margin-top: 10px;
+            border-radius: 3px;
         }
-        nav .progress-bar .progress {
+        nav .progress {
             height: 100%;
             background: #4CAF50;
             width: 0;
             transition: width 0.2s;
+            border-radius: 3px;
         }
         nav ul {
             list-style: none;
@@ -84,7 +91,7 @@
         nav a {
             text-decoration: none;
             color: #4CAF50;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             font-weight: 600;
             font-size: 16px;
             transition: color 0.3s;
@@ -99,10 +106,10 @@
             margin-left: 270px;
             background: #fff;
             border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
         }
         section h2 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             color: #4CAF50;
             font-size: 36px;
             text-align: center;
@@ -116,16 +123,16 @@
         .card {
             background: #f9f9f9;
             padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            box-shadow: 12px 12px 24px rgba(0,0,0,0.15), -12px -12px 24px rgba(255,255,255,0.6);
         }
         .card h3 {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             color: #2196F3;
             font-size: 24px;
             margin-bottom: 15px;
@@ -144,14 +151,14 @@
         th {
             background: #4CAF50;
             color: white;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
         }
         .chart {
             width: 100%;
             height: 250px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 25px 0;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);
             background-size: cover;
             background-position: center;
         }
@@ -163,12 +170,14 @@
             font-family: monospace;
             font-size: 16px;
             border-radius: 5px;
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05);
         }
         .roi-calculator {
             background: #e8f5e9;
             padding: 30px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 20px 0;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
         }
         .roi-calculator input {
             padding: 10px;
@@ -176,6 +185,7 @@
             width: 100%;
             border: 1px solid #ddd;
             border-radius: 5px;
+            font-family: 'Exo 2', sans-serif;
         }
         .roi-calculator button {
             background: #4CAF50;
@@ -185,6 +195,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            font-family: 'Orbitron', sans-serif;
         }
         .roi-calculator button:hover {
             background: #388E3C;
@@ -199,25 +210,31 @@
             margin-left: 250px;
         }
         @media (max-width: 768px) {
-            header h1 { font-size: 36px; }
+            header h1 { font-size: 32px; }
             header p { font-size: 18px; }
             section { margin-left: 0; }
             section h2 { font-size: 28px; }
             nav { width: 100%; height: auto; position: sticky; top: 0; }
-            nav.minimized { width: 100%; }
-            nav.minimized .current-section { font-size: 14px; }
+            nav.minimized { width: 100%; height: 60px; }
+            nav.minimized .current-section { font-size: 12px; padding: 10px; }
+            nav .progress-bar { margin: 5px 10px; }
             footer { margin-left: 0; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            section { margin-left: 260px; max-width: 90%; }
+            .card { padding: 20px; }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>EcoGen Romania SRL</h1>
-        <p>Powering the Green Revolution: Portable Solar Generators for Romania & EU</p>
+        <p>Powering the Future: Portable Solar Generators for Romania & EU</p>
     </header>
 
     <nav id="nav">
-        <div class="current-section"></div>
+        <div class="current-section">Scroll to Start</div>
         <div class="progress-bar"><div class="progress"></div></div>
         <ul class="nav-links">
             <li><a href="#problem-solution">Problem & Solution</a></li>
@@ -249,7 +266,7 @@
     <section id="market">
         <h2>Market Opportunity</h2>
         <p>Romania’s renewable market grows at >3% CAGR, hitting €1.94B by 2030. EU’s €630M Horizon Europe fuels 600 GW solar by 2030. With 204,000+ prosumers and 79% off-grid demand growth, our TAM is €50B.</p>
-        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Solar+Capacity+Growth+Chart')"></div>
+        <div class="chart" style="background-image: url('/uploads/solar-growth-chart.png')"></div>
     </section>
 
     <section id="product">
@@ -269,13 +286,13 @@
                 <p>Customization, installation, 5-year warranty, Arad-based maintenance. CE/ISO 14001 compliant for EU markets.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=EcoGen+Solar+Generator+Image')"></div>
+        <div class="chart" style="background-image: url('/uploads/solar-generator.png')"></div>
     </section>
 
     <section id="competitors">
         <h2>Competitive Edge</h2>
         <p>Outpower EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500). Local Arad production saves 15% costs. USPs: 10kW capacity, AI, hybrid options. Target: 5% Romania market by 2030.</p>
-        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Competitor+Matrix')"></div>
+        <div class="chart" style="background-image: url('/uploads/competitor-matrix.png')"></div>
     </section>
 
     <section id="business-model">
@@ -298,7 +315,7 @@
                 <p>NPV: €7.3M; IRR: 376%; ROI: 2,139% with grants.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Revenue+Growth+Graph')"></div>
+        <div class="chart" style="background-image: url('/uploads/revenue-growth.png')"></div>
     </section>
 
     <section id="grants">
@@ -307,7 +324,7 @@
         <div class="content-grid">
             <div class="card">Funding Split: Grants 40%, Investment 60%</div>
         </div>
-        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Funding+Pie+Chart')"></div>
+        <div class="chart" style="background-image: url('/uploads/funding-pie.png')"></div>
     </section>
 
     <section id="impact">
@@ -342,7 +359,7 @@
             <button onclick="calculateROI()">Calculate Savings</button>
             <div id="roiResult"></div>
         </div>
-        <div class="chart" style="background-image: url('https://via.placeholder.com/800x250?text=Investor+ROI+Projection')"></div>
+        <div class="chart" style="background-image: url('/uploads/roi-projection.png')"></div>
     </section>
 
     <footer>
@@ -357,24 +374,32 @@
         const sections = document.querySelectorAll('section');
         let isScrolling = false;
 
+        function updateNav() {
+            let current = '';
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                    current = section.getAttribute('id');
+                }
+            });
+            currentSection.textContent = current
+                ? document.querySelector(`a[href="#${current}"]`).textContent
+                : 'Scroll to Start';
+            
+            // Progress Bar
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progressPercent = Math.min((window.scrollY / totalHeight) * 100, 100);
+            progress.style.width = `${progressPercent}%`;
+        }
+
         window.addEventListener('scroll', () => {
-            if (!isScrolling) {
+            if (window.scrollY > 100) {
                 nav.classList.add('minimized');
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (scrollY >= sectionTop - 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
-                currentSection.textContent = current
-                    ? document.querySelector(`a[href="#${current}"]`).textContent
-                    : 'Scroll to Start';
-                
-                // Progress Bar
-                const totalHeight = document.body.scrollHeight - window.innerHeight;
-                const progressPercent = (scrollY / totalHeight) * 100;
-                progress.style.width = `${progressPercent}%`;
+            } else {
+                nav.classList.remove('minimized');
+            }
+            if (!isScrolling) {
+                updateNav();
             }
         });
 
@@ -386,9 +411,15 @@
                 const targetId = this.getAttribute('href').substring(1);
                 const targetSection = document.getElementById(targetId);
                 targetSection.scrollIntoView({ behavior: 'smooth' });
-                setTimeout(() => { isScrolling = false; }, 1000);
+                setTimeout(() => {
+                    isScrolling = false;
+                    updateNav();
+                }, 1000);
             });
         });
+
+        // Initial update
+        updateNav();
 
         // ROI Calculator
         function calculateROI() {
