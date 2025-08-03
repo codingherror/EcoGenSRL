@@ -11,84 +11,78 @@
             padding: 0;
             box-sizing: border-box;
         }
-        html, body {
-            width: 100%;
-            max-width: 100vw;
-            overflow-x: hidden;
+        body {
             font-family: 'Exo 2', sans-serif;
             background: linear-gradient(to bottom, #A8E6CF, #D5F5E3, #E0F7FA);
             color: #333;
             line-height: 1.6;
-            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         header {
             background: linear-gradient(135deg, #4CAF50, #2196F3);
             color: white;
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
         header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: 42px;
             margin-bottom: 10px;
         }
         header p {
-            font-size: clamp(18px, 3vw, 24px);
+            font-size: 22px;
             opacity: 0.9;
         }
         nav {
             background: #fff;
-            width: clamp(150px, 20%, 250px);
-            height: 100vh;
-            position: fixed;
+            padding: 15px 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            position: sticky;
             top: 0;
-            left: 0;
-            overflow-y: auto;
-            box-shadow: 2px 0 6px rgba(0,0,0,0.1);
-            transition: width 0.3s;
             z-index: 1000;
-        }
-        nav:hover {
-            width: clamp(150px, 20%, 250px);
+            text-align: center;
+            transition: padding 0.3s;
         }
         nav.minimized {
-            width: clamp(60px, 10%, 80px);
+            padding: 10px 20px;
         }
         nav.minimized .nav-links {
             display: none;
         }
         nav.minimized .current-section {
             display: block;
-            padding: 15px;
-            font-size: clamp(12px, 2vw, 14px);
-            color: #4CAF50;
-            text-align: center;
             font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+            color: #4CAF50;
         }
         nav .current-section {
             display: none;
         }
         nav .progress-bar {
             width: 100%;
+            max-width: 800px;
             height: 6px;
             background: #e0e0e0;
-            margin: 10px 0;
+            margin: 10px auto;
             border-radius: 3px;
         }
         nav .progress {
             height: 100%;
             background: #4CAF50;
             width: 0;
-            transition: width 0.2s ease-out;
+            transition: width 0.2s;
             border-radius: 3px;
         }
         nav ul {
             list-style: none;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         nav li {
-            margin: 15px 0;
+            margin: 0;
         }
         nav a {
             text-decoration: none;
@@ -96,58 +90,66 @@
             font-family: 'Orbitron', sans-serif;
             font-weight: 600;
             font-size: 16px;
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.2s;
         }
         nav a:hover {
             color: #2196F3;
+            transform: scale(1.1);
         }
         section {
-            padding: 80px 20px;
-            max-width: min(1000px, 80vw);
+            padding: 60px 20px;
+            max-width: 1000px;
             margin: 0 auto 30px;
-            margin-left: calc(clamp(150px, 20%, 250px) + 20px);
             background: #fff;
             border-radius: 12px;
-            box-shadow: 6px 6px 12px rgba(0,0,0,0.1), -6px -6px 12px rgba(255,255,255,0.6);
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
         }
         section h2 {
             font-family: 'Orbitron', sans-serif;
             color: #4CAF50;
-            font-size: clamp(28px, 4vw, 36px);
+            font-size: 34px;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            gap: 20px;
+            justify-content: center;
         }
         .card {
             background: #f9f9f9;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
-            box-shadow: 6px 6px 12px rgba(0,0,0,0.1), -6px -6px 12px rgba(255,255,255,0.6);
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
             transition: transform 0.3s, box-shadow 0.3s;
+            text-align: justify;
         }
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 10px 10px 20px rgba(0,0,0,0.15), -10px -10px 20px rgba(255,255,255,0.7);
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 24px rgba(0,0,0,0.15), -12px -12px 24px rgba(255,255,255,0.6);
         }
         .card h3 {
             font-family: 'Orbitron', sans-serif;
             color: #2196F3;
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 15px;
+            text-align: center;
+        }
+        .card p {
+            font-size: 16px;
+            margin-bottom: 10px;
         }
         table {
             width: 100%;
+            max-width: 100%;
             border-collapse: collapse;
             margin: 20px 0;
-            font-size: 16px;
+            font-size: 15px;
         }
         th, td {
             border: 1px solid #ddd;
-            padding: 12px;
+            padding: 10px;
             text-align: left;
         }
         th {
@@ -157,107 +159,95 @@
         }
         .chart {
             width: 100%;
-            max-width: 100%;
+            max-width: 800px;
             height: 250px;
             border-radius: 12px;
-            margin: 25px 0;
-            box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.6);
+            margin: 20px auto;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);
             background-size: cover;
             background-position: center;
         }
         .equation {
             background: #f0f8ff;
-            padding: 20px;
+            padding: 15px;
             border-left: 5px solid #2196F3;
-            margin: 20px 0;
+            margin: 20px auto;
+            max-width: 800px;
             font-family: monospace;
-            font-size: 16px;
+            font-size: 15px;
             border-radius: 5px;
             box-shadow: inset 2px 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
         }
         .roi-calculator {
             background: #e8f5e9;
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
-            margin: 20px 0;
-            box-shadow: 6px 6px 12px rgba(0,0,0,0.1), -6px -6px 12px rgba(255,255,255,0.6);
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
         }
         .roi-calculator input {
             padding: 10px;
-            margin: 10px 0;
+            margin: 8px 0;
             width: 100%;
+            max-width: 400px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: 'Exo 2', sans-serif;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
         }
         .roi-calculator button {
             background: #4CAF50;
             color: white;
-            padding: 12px 20px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
             font-family: 'Orbitron', sans-serif;
+            display: block;
+            margin: 10px auto;
         }
         .roi-calculator button:hover {
             background: #388E3C;
+        }
+        .roi-calculator #roiResult {
+            text-align: center;
+            font-size: 15px;
         }
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 30px;
+            padding: 25px;
             font-size: 16px;
             border-top: 4px solid #4CAF50;
-            margin-left: calc(clamp(150px, 20%, 250px) + 20px);
         }
         @media (max-width: 768px) {
-            header h1 { font-size: 32px; }
+            header h1 { font-size: 30px; }
             header p { font-size: 18px; }
-            section { margin-left: 0; margin-right: 20px; }
-            section h2 { font-size: 28px; }
-            nav { 
-                width: 100%; 
-                height: auto; 
-                position: sticky; 
-                top: 0; 
-                max-height: 100px;
-            }
-            nav.minimized { 
-                width: 100%; 
-                height: 60px; 
-            }
-            nav.minimized .current-section { 
-                font-size: 12px; 
-                padding: 10px; 
-            }
-            nav .progress-bar { 
-                margin: 5px 10px; 
-            }
-            footer { 
-                margin-left: 0; 
-                margin-right: 20px; 
-            }
-            .content-grid { 
-                grid-template-columns: 1fr; 
-            }
+            section h2 { font-size: 26px; }
+            nav ul { gap: 10px; }
+            nav.minimized { padding: 8px 10px; }
+            nav.minimized .current-section { font-size: 14px; }
+            .content-grid { grid-template-columns: 1fr; }
+            .card { padding: 15px; }
+            table { font-size: 14px; }
+            table th, table td { padding: 8px; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
-            section { 
-                margin-left: calc(clamp(150px, 20%, 250px) + 10px); 
-                max-width: 90%; 
-            }
-            .card { 
-                padding: 20px; 
-            }
+            section { max-width: 90%; }
+            .card { padding: 18px; }
         }
     </style>
 </head>
 <body>
     <header>
         <h1>EcoGen Romania SRL</h1>
-        <p>Powering the Future: Portable Solar Generators for Romania & EU</p>
+        <p>Leading the Green Revolution with Portable Solar Generators</p>
     </header>
 
     <nav id="nav">
@@ -265,11 +255,11 @@
         <div class="progress-bar"><div class="progress"></div></div>
         <ul class="nav-links">
             <li><a href="#problem-solution">Problem & Solution</a></li>
-            <li><a href="#market">Market Opportunity</a></li>
+            <li><a href="#market">Market</a></li>
             <li><a href="#product">Product</a></li>
             <li><a href="#competitors">Competitors</a></li>
             <li><a href="#business-model">Financials</a></li>
-            <li><a href="#grants">Grants & Funding</a></li>
+            <li><a href="#grants">Funding</a></li>
             <li><a href="#impact">Impact</a></li>
             <li><a href="#equations">Models</a></li>
             <li><a href="#investment">Investment</a></li>
@@ -280,19 +270,27 @@
         <h2>Problem & Solution</h2>
         <div class="content-grid">
             <div class="card">
-                <h3>Diesel's Dirty Legacy</h3>
-                <p>Diesel generators emit 0.8 kg CO2/kWh, cost €0.20/kWh, and are noisy. Romania’s 75% fossil-based emissions and rural off-grid reliance demand a cleaner alternative. EU’s Green Deal pushes for 45% renewables by 2030.</p>
+                <h3>The Diesel Problem</h3>
+                <p>Diesel generators produce 0.8 kg CO2 per kWh and cost €0.20 per kWh to operate, contributing heavily to Romania’s 75% fossil-based emissions.</p>
+                <p>Rural areas rely on these noisy, polluting units, while the EU’s Green Deal demands 45% renewables by 2030, creating an urgent need for alternatives.</p>
             </div>
             <div class="card">
-                <h3>EcoGen’s Clean Power</h3>
-                <p>Our 10kW portable solar generator delivers zero-emission power (0.05 kg CO2/kWh), saves €0.15/kWh, and operates silently. Built in Arad with AI optimization for 20% efficiency gains.</p>
+                <h3>EcoGen’s Solution</h3>
+                <p>Our 10kW portable solar generator offers zero-emission power at 0.05 kg CO2 per kWh, saving €0.15 per kWh compared to diesel.</p>
+                <p>Manufactured in Arad with AI optimization, it delivers 20% efficiency gains and silent operation for residential and industrial use.</p>
             </div>
         </div>
     </section>
 
     <section id="market">
         <h2>Market Opportunity</h2>
-        <p>Romania’s renewable market grows at >3% CAGR, hitting €1.94B by 2030. EU’s €630M Horizon Europe fuels 600 GW solar by 2030. With 204,000+ prosumers and 79% off-grid demand growth, our TAM is €50B.</p>
+        <div class="content-grid">
+            <div class="card">
+                <p>Romania’s renewable market is growing at over 3% CAGR, reaching €1.94 billion by 2030, driven by €28.5 billion in PNRR funding.</p>
+                <p>The EU’s €630 million Horizon Europe program supports 600 GW of solar by 2030, with 204,000+ prosumers and 79% off-grid demand growth in Romania.</p>
+                <p>Our total addressable market spans a €50 billion portable power sector, with strong demand in agriculture and rural areas.</p>
+            </div>
+        </div>
         <div class="chart" style="background-image: url('/uploads/solar-growth-chart.png')"></div>
     </section>
 
@@ -301,25 +299,29 @@
         <div class="content-grid">
             <div class="card">
                 <h3>Features</h3>
-                <ul>
-                    <li>10kW capacity, 20kWh Li-ion battery</li>
-                    <li>22% efficient monocrystalline panels</li>
-                    <li>AI app boosts efficiency by 20%</li>
-                    <li>Hybrid diesel-solar option</li>
-                </ul>
+                <p>10kW capacity with a 20kWh Li-ion battery, powered by 22% efficient monocrystalline panels.</p>
+                <p>AI-driven app increases efficiency by 20%, with hybrid diesel-solar options for transitioning markets.</p>
+                <p>CE and ISO 14001 compliant, ensuring EU market readiness.</p>
             </div>
             <div class="card">
                 <h3>Services</h3>
-                <p>Customization, installation, 5-year warranty, Arad-based maintenance. CE/ISO 14001 compliant for EU markets.</p>
+                <p>Customization for specific needs, professional installation, and a 5-year warranty.</p>
+                <p>Maintenance services provided from our Arad hub, ensuring reliability and customer satisfaction.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/Uploads/solar-generator.png')"></div>
+        <div class="chart" style="background-image: url('/uploads/solar-generator.png')"></div>
     </section>
 
     <section id="competitors">
         <h2>Competitive Edge</h2>
-        <p>Outpower EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500). Local Arad production saves 15% costs. USPs: 10kW capacity, AI, hybrid options. Target: 5% Romania market by 2030.</p>
-        <div class="chart" style="background-image: url('/Uploads/competitor-matrix.png')"></div>
+        <div class="content-grid">
+            <div class="card">
+                <p>We surpass competitors like EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500) with our 10kW capacity.</p>
+                <p>Local production in Arad reduces costs by 15%, while AI optimization and hybrid options set us apart.</p>
+                <p>Our goal is to capture 5% of Romania’s €1.94 billion renewable market by 2030.</p>
+            </div>
+        </div>
+        <div class="chart" style="background-image: url('/uploads/competitor-matrix.png')"></div>
     </section>
 
     <section id="business-model">
@@ -327,7 +329,8 @@
         <div class="content-grid">
             <div class="card">
                 <h3>Business Model</h3>
-                <p>Pricing: €8,000/unit (45% margin). Costs: €4,500/unit. OPEX: €200K Year 1. Sales: 50 units Year 1 → 450 by Year 5.</p>
+                <p>Priced at €8,000 per unit with a 45% margin, manufacturing costs are €4,500 per unit.</p>
+                <p>Year 1 OPEX is €200,000, with sales scaling from 50 units to 450 by Year 5.</p>
             </div>
             <div class="card">
                 <h3>Projections</h3>
@@ -342,16 +345,19 @@
                 <p>NPV: €7.3M; IRR: 376%; ROI: 2,139% with grants.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/Uploads/revenue-growth.png')"></div>
+        <div class="chart" style="background-image: url('/uploads/revenue-growth.png')"></div>
     </section>
 
     <section id="grants">
         <h2>Grants & Funding</h2>
-        <p>Securing €200K from AFM (€3.3B budget) and PNRR (€457M solar). EU: Horizon Europe (€630M), LIFE, EIB loans. Total CAPEX: €500K (40% grants, 60% investment). Apply Q4 2025.</p>
         <div class="content-grid">
-            <div class="card">Funding Split: Grants 40%, Investment 60%</div>
+            <div class="card">
+                <p>Targeting €200,000 from Romania’s AFM (€3.3B budget) and PNRR (€457M for solar).</p>
+                <p>EU sources include Horizon Europe (€630M), LIFE, and EIB loans.</p>
+                <p>Total CAPEX: €500,000 (40% grants, 60% investment). Applications begin Q4 2025.</p>
+            </div>
         </div>
-        <div class="chart" style="background-image: url('/Uploads/funding-pie.png')"></div>
+        <div class="chart" style="background-image: url('/uploads/funding-pie.png')"></div>
     </section>
 
     <section id="impact">
@@ -359,11 +365,14 @@
         <div class="content-grid">
             <div class="card">
                 <h3>Environmental & Social</h3>
-                <p>Save 8,250 tons CO2 (380,000 trees). Create 20 jobs in Arad. Boost €1M local economy. Align with EU 45% renewables, Romania 38% by 2030.</p>
+                <p>Reduce 8,250 tons of CO2, equivalent to planting 380,000 trees, over 5 years.</p>
+                <p>Create 20 jobs in Arad and boost the local economy by €1 million.</p>
+                <p>Align with EU’s 45% renewables and Romania’s 38% green energy goals by 2030.</p>
             </div>
             <div class="card">
                 <h3>Feasibility</h3>
-                <p>High (8/10): Policy tailwinds, grants, and robust projections. Risks mitigated via dual suppliers, diversified funding.</p>
+                <p>Rated 8/10 due to strong market trends, grant support, and robust financials.</p>
+                <p>Risks like supply chain delays are mitigated with dual suppliers and diversified funding.</p>
             </div>
         </div>
     </section>
@@ -377,7 +386,13 @@
 
     <section id="investment">
         <h2>Investment Opportunity</h2>
-        <p>€300,000 for 15% equity (€2M pre-money). Use: 40% equipment, 40% warehouse, 20% marketing. Exit: 10x return via acquisition. Join Romania’s green boom!</p>
+        <div class="content-grid">
+            <div class="card">
+                <p>Seeking €300,000 for 15% equity at a €2M pre-money valuation.</p>
+                <p>Funds allocated: 40% equipment, 40% warehouse, 20% marketing.</p>
+                <p>Exit strategy offers a 10x return via acquisition within 5 years.</p>
+            </div>
+        </div>
         <div class="roi-calculator">
             <h3>Customer ROI Calculator</h3>
             <input type="number" id="hours" placeholder="Daily Usage Hours (e.g., 8)" required>
@@ -386,7 +401,7 @@
             <button onclick="calculateROI()">Calculate Savings</button>
             <div id="roiResult"></div>
         </div>
-        <div class="chart" style="background-image: url('/Uploads/roi-projection.png')"></div>
+        <div class="chart" style="background-image: url('/uploads/roi-projection.png')"></div>
     </section>
 
     <footer>
@@ -394,19 +409,6 @@
     </footer>
 
     <script>
-        // Debounce function to limit scroll event frequency
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
         // Dynamic Navigation and Progress Bar
         const nav = document.getElementById('nav');
         const currentSection = document.querySelector('.current-section');
@@ -418,22 +420,21 @@
             let current = '';
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
                     current = section.getAttribute('id');
                 }
             });
             currentSection.textContent = current
                 ? document.querySelector(`a[href="#${current}"]`).textContent
                 : 'Scroll to Start';
-
+            
             // Progress Bar
-            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progressPercent = Math.min((scrollTop / scrollHeight) * 100, 100);
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progressPercent = Math.min((window.scrollY / totalHeight) * 100, 100);
             progress.style.width = `${progressPercent}%`;
         }
 
-        window.addEventListener('scroll', debounce(() => {
+        window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
                 nav.classList.add('minimized');
             } else {
@@ -442,7 +443,7 @@
             if (!isScrolling) {
                 updateNav();
             }
-        }, 10));
+        });
 
         // Smooth scroll for nav links
         document.querySelectorAll('nav a').forEach(anchor => {
@@ -478,14 +479,4 @@
             const co2Reduction = annualKWh * (0.8 - 0.05) * years / 1000;
 
             document.getElementById('roiResult').innerHTML = `
-                <p><strong>Results:</strong></p>
-                <p>Annual Savings: €${annualSavings.toFixed(2)}</p>
-                <p>Total Savings: €${totalSavings.toFixed(2)}</p>
-                <p>Payback Period: ${payback.toFixed(2)} years</p>
-                <p>CO2 Reduced: ${co2Reduction.toFixed(2)} tons</p>
-                <p>${payback < years ? 'Profitable Investment!' : 'Adjust usage for better ROI.'}</p>
-            `;
-        }
-    </script>
-</body>
-</html>
+                <p><strong>Results:</
