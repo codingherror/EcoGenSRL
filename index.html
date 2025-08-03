@@ -579,11 +579,12 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { beginAtZero: false, title: { display: true, text: 'GW' } } }
+                    scales: { y: { beginAtZero: false, title: { display: true, text: 'GW' } } },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
 
-            // Product: Doughnut Chart (Component Breakdown)
+            // Product: Doughnut Chart
             new Chart(document.getElementById('productChart'), {
                 type: 'doughnut',
                 data: {
@@ -596,7 +597,8 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Orbitron', size: 12 } } } }
+                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Orbitron', size: 12 } } } },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
 
@@ -618,7 +620,8 @@
                     scales: {
                         x: { title: { display: true, text: 'Capacity (kW)' } },
                         y: { title: { display: true, text: 'Price (€)' } }
-                    }
+                    },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
 
@@ -644,7 +647,8 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { beginAtZero: true, title: { display: true, text: '€' } } }
+                    scales: { y: { beginAtZero: true, title: { display: true, text: '€' } } },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
 
@@ -661,7 +665,8 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Orbitron', size: 12 } } } }
+                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Orbitron', size: 12 } } } },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
 
@@ -685,7 +690,8 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } }
+                    scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } },
+                    animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
         } catch (e) {
