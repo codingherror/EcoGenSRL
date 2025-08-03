@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoGen Romania SRL - Investor Presentation</title>
+    <title>EcoGen Romania SRL - Business Plan</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Exo+2:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
     <style>
@@ -288,6 +288,20 @@
             justify-content: center;
             align-items: center;
         }
+        .download-btn {
+            background: #2196F3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #1976D2;
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -317,6 +331,7 @@
     <header>
         <h1>EcoGen Romania SRL</h1>
         <p>Leading the Green Revolution with Portable Solar Generators</p>
+        <button class="download-btn" onclick="window.print()">Download as PDF</button>
     </header>
 
     <nav id="nav" class="minimized">
@@ -325,41 +340,39 @@
         <div class="current-section">Scroll to Start</div>
         <div class="progress-bar"><div class="progress"></div></div>
         <ul class="nav-links">
-            <li><a href="#problem-solution">Problem & Solution</a></li>
-            <li><a href="#market">Market</a></li>
-            <li><a href="#product">Product</a></li>
-            <li><a href="#competitors">Competitors</a></li>
-            <li><a href="#business-model">Financials</a></li>
-            <li><a href="#grants">Funding</a></li>
+            <li><a href="#executive-summary">Executive Summary</a></li>
+            <li><a href="#market">Market Analysis</a></li>
+            <li><a href="#product">Product & Services</a></li>
+            <li><a href="#competitors">Competitive Analysis</a></li>
+            <li><a href="#marketing">Marketing & Sales</a></li>
+            <li><a href="#operations">Operations</a></li>
+            <li><a href="#financials">Financials</a></li>
+            <li><a href="#funding">Funding</a></li>
             <li><a href="#impact">Impact</a></li>
-            <li><a href="#equations">Models</a></li>
-            <li><a href="#investment">Investment</a></li>
+            <li><a href="#risks">Risks</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
         </ul>
     </nav>
 
-    <section id="problem-solution">
-        <h2>Problem & Solution</h2>
+    <section id="executive-summary">
+        <h2>Executive Summary</h2>
         <div class="content-grid">
             <div class="card">
-                <h3>The Diesel Problem</h3>
-                <p>Diesel generators produce 0.8 kg CO2 per kWh and cost €0.20 per kWh to operate, contributing heavily to Romania’s 75% fossil-based emissions.</p>
-                <p>Rural areas rely on these noisy, polluting units, while the EU’s Green Deal demands 45% renewables by 2030, creating an urgent need for alternatives.</p>
-            </div>
-            <div class="card">
-                <h3>EcoGen’s Solution</h3>
-                <p>Our 10kW portable solar generator offers zero-emission power at 0.05 kg CO2 per kWh, saving €0.15 per kWh compared to diesel.</p>
-                <p>Manufactured in Arad with AI optimization, it delivers 20% efficiency gains and silent operation for residential and industrial use.</p>
+                <p>EcoGen Romania SRL manufactures 10kW portable solar generators to replace diesel, targeting Romania’s €1.94B renewable market and the EU’s €50B portable power sector.</p>
+                <p>Based in Arad, we reduce costs by 15% via local production and align with EU’s 45% and Romania’s 38% renewable goals by 2030.</p>
+                <p>Our AI-optimized generators save €0.15/kWh and reduce 8,250 tons CO2 over 5 years. We project €6.4M revenue by Year 5, with 2,139% ROI.</p>
+                <p>Seeking €300,000 for 15% equity, supplemented by €200,000 in grants, for equipment, warehouse, and marketing.</p>
             </div>
         </div>
     </section>
 
     <section id="market">
-        <h2>Market Opportunity</h2>
+        <h2>Market Analysis</h2>
         <div class="content-grid">
             <div class="card">
-                <p>Romania’s renewable market is growing at over 3% CAGR, reaching €1.94 billion by 2030, driven by €28.5 billion in PNRR funding.</p>
-                <p>The EU’s €630 million Horizon Europe program supports 600 GW of solar by 2030, with 204,000+ prosumers and 79% off-grid demand growth in Romania.</p>
-                <p>Our total addressable market spans a €50 billion portable power sector, with strong demand in agriculture and rural areas.</p>
+                <p>Romania’s renewable market grows at >3% CAGR, reaching €1.94B by 2030, driven by €28.5B PNRR funding. Solar capacity rises from 5.9 GW (2025) to 10.39 GW (2030).</p>
+                <p>EU’s €630M Horizon Europe supports 600 GW solar by 2030. Demand is strong from 204,000+ prosumers and 79% off-grid growth.</p>
+                <p>Our TAM spans a €50B portable power market, targeting prosumers, agriculture, and EU exports.</p>
             </div>
         </div>
         <div class="chart">
@@ -368,18 +381,17 @@
     </section>
 
     <section id="product">
-        <h2>Our Product</h2>
+        <h2>Product & Services</h2>
         <div class="content-grid">
             <div class="card">
-                <h3>Features</h3>
-                <p>10kW capacity with a 20kWh Li-ion battery, powered by 22% efficient monocrystalline panels.</p>
-                <p>AI-driven app increases efficiency by 20%, with hybrid diesel-solar options for transitioning markets.</p>
-                <p>CE and ISO 14001 compliant, ensuring EU market readiness.</p>
+                <h3>Product</h3>
+                <p>10kW portable solar generator with 20kWh Li-ion battery, 22% efficient panels, and AI app (20% efficiency boost).</p>
+                <p>Zero-emission (0.05 kg CO2/kWh), silent, hybrid option, CE/ISO 14001 compliant.</p>
             </div>
             <div class="card">
                 <h3>Services</h3>
-                <p>Customization for specific needs, professional installation, and a 5-year warranty.</p>
-                <p>Maintenance services provided from our Arad hub, ensuring reliability and customer satisfaction.</p>
+                <p>Customization, installation, 5-year warranty, and Arad-based maintenance.</p>
+                <p>Ensures reliability and customer satisfaction across residential and industrial applications.</p>
             </div>
         </div>
         <div class="chart">
@@ -388,12 +400,12 @@
     </section>
 
     <section id="competitors">
-        <h2>Competitive Edge</h2>
+        <h2>Competitive Analysis</h2>
         <div class="content-grid">
             <div class="card">
-                <p>We surpass competitors like EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500) with our 10kW capacity.</p>
-                <p>Local production in Arad reduces costs by 15%, while AI optimization and hybrid options set us apart.</p>
-                <p>Our goal is to capture 5% of Romania’s €1.94 billion renewable market by 2030.</p>
+                <p>We surpass EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500) with our 10kW capacity.</p>
+                <p>Arad production saves 15% costs; AI and hybrid options differentiate us.</p>
+                <p>Goal: 5% of Romania’s €1.94B renewable market by 2030.</p>
             </div>
         </div>
         <div class="chart">
@@ -401,8 +413,33 @@
         </div>
     </section>
 
-    <section id="business-model">
-        <h2>Financials</h2>
+    <section id="marketing">
+        <h2>Marketing & Sales</h2>
+        <div class="content-grid">
+            <div class="card">
+                <p>Target: Romanian prosumers (204,000+), Arad/Timisoara businesses, EU exports (20%).</p>
+                <p>Channels: Online platform, AFM partnerships, RENEXPO trade shows.</p>
+                <p>Pricing: €8,000/unit (45% margin), €9,500 bundles, 0% financing.</p>
+                <p>Promotion: €50,000 Year 1 digital ads, Salesforce CRM, eco-certifications.</p>
+                <p>Forecast: 50 units Year 1 (€400,000) to 450 units Year 5 (€6.4M).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="operations">
+        <h2>Operations</h2>
+        <div class="content-grid">
+            <div class="card">
+                <p>Location: 2,000 sqm Arad warehouse (€120,000/year lease), near EU borders.</p>
+                <p>Production: 100 units/month by Year 3, using EU/China panels, local batteries.</p>
+                <p>Team: 10 initial staff (CEO with 10+ years renewables, CTO with patents), growing to 30.</p>
+                <p>Compliance: EU RoHS, Romanian safety standards, ISO 14001 pending.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="financials">
+        <h2>Financial Projections</h2>
         <div class="content-grid">
             <div class="card">
                 <h3>Business Model</h3>
@@ -427,13 +464,13 @@
         </div>
     </section>
 
-    <section id="grants">
-        <h2>Grants & Funding</h2>
+    <section id="funding">
+        <h2>Funding Strategy</h2>
         <div class="content-grid">
             <div class="card">
-                <p>Targeting €200,000 from Romania’s AFM (€3.3B budget) and PNRR (€457M for solar).</p>
-                <p>EU sources include Horizon Europe (€630M), LIFE, and EIB loans.</p>
-                <p>Total CAPEX: €500,000 (40% grants, 60% investment). Applications begin Q4 2025.</p>
+                <p>Need: €500,000 CAPEX (€300,000 investment, €200,000 grants).</p>
+                <p>Sources: AFM (€3.3B budget), PNRR (€457M solar), Horizon Europe (€630M), LIFE, EIB loans.</p>
+                <p>Timeline: Apply Q4 2025, secure funding Q1 2026.</p>
             </div>
         </div>
         <div class="chart">
@@ -446,44 +483,41 @@
         <div class="content-grid">
             <div class="card">
                 <h3>Environmental & Social</h3>
-                <p>Reduce 8,250 tons of CO2, equivalent to planting 380,000 trees, over 5 years.</p>
-                <p>Create 20 jobs in Arad and boost the local economy by €1 million.</p>
-                <p>Align with EU’s 45% renewables and Romania’s 38% green energy goals by 2030.</p>
+                <p>Reduce 8,250 tons CO2 over 5 years, equivalent to 380,000 trees.</p>
+                <p>Create 20 jobs in Arad, boost local economy by €1M.</p>
+                <p>Align with EU’s 45% and Romania’s 38% renewable goals by 2030.</p>
             </div>
             <div class="card">
                 <h3>Feasibility</h3>
-                <p>Rated 8/10 due to strong market trends, grant support, and robust financials.</p>
-                <p>Risks like supply chain delays are mitigated with dual suppliers and diversified funding.</p>
+                <p>Rated 8/10 due to market trends, grant support, and robust financials.</p>
+                <p>Risks (supply delays, policy changes) mitigated with dual suppliers and diversified funding.</p>
             </div>
         </div>
     </section>
 
-    <section id="equations">
-        <h2>Policy-Driven Models</h2>
-        <div class="equation">Renewable CAGR: (Target/Current)^(1/5) - 1 = 8.45% (EU), 11.98% (Romania Solar)</div>
-        <div class="equation">CO2 Saved: (0.8 - 0.05) × 10,000 kWh × 1,550 Units = 8,250 tons</div>
-        <div class="equation">ROI: (Net Profit + €200K Grants)/€300K Investment × 100% = 2,139%</div>
-    </section>
-
-    <section id="investment">
-        <h2>Investment Opportunity</h2>
+    <section id="risks">
+        <h2>Risk Analysis</h2>
         <div class="content-grid">
             <div class="card">
-                <p>Seeking €300,000 for 15% equity at a €2M pre-money valuation.</p>
-                <p>Funds allocated: 40% equipment, 40% warehouse, 20% marketing.</p>
-                <p>Exit strategy offers a 10x return via acquisition within 5 years.</p>
+                <p>Risks: Supply chain delays, policy changes, competition.</p>
+                <p>Mitigation: Dual suppliers, diversified grants, patented AI tech, insurance, fixed-price contracts.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap">
+        <h2>Implementation Roadmap</h2>
+        <div class="content-grid">
+            <div class="card">
+                <p>Q3 2025: Finalize grants, lease Arad warehouse.</p>
+                <p>Q4 2025: Secure €200,000 grants, begin equipment setup.</p>
+                <p>Q1 2026: Launch production, sell 50 units.</p>
+                <p>Q2-Q4 2026: Scale marketing, EU exports.</p>
+                <p>Ongoing: Monitor KPIs, annual reviews.</p>
             </div>
         </div>
         <div class="chart">
-            <canvas id="roiChart"></canvas>
-        </div>
-        <div class="roi-calculator">
-            <h3>Customer ROI Calculator</h3>
-            <input type="number" id="hours" placeholder="Daily Usage Hours (e.g., 8)" required>
-            <input type="number" id="years" placeholder="Years (e.g., 5)" required>
-            <input type="number" id="dieselCost" placeholder="Diesel Cost per kWh (€, e.g., 0.20)" required>
-            <button onclick="calculateROI()">Calculate Savings</button>
-            <div id="roiResult"></div>
+            <canvas id="roadmapChart"></canvas>
         </div>
     </section>
 
@@ -670,14 +704,14 @@
                 }
             });
 
-            // Investment: Line Chart (ROI)
-            new Chart(document.getElementById('roiChart'), {
+            // Roadmap: Line Chart
+            new Chart(document.getElementById('roadmapChart'), {
                 type: 'line',
                 data: {
-                    labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                    labels: ['Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026', 'Q3 2026'],
                     datasets: [{
-                        label: 'ROI (%)',
-                        data: [0, 500, 1000, 1500, 2139],
+                        label: 'Milestones',
+                        data: [1, 2, 3, 4, 5],
                         borderColor: '#4CAF50',
                         backgroundColor: 'rgba(76, 175, 80, 0.2)',
                         tension: 0.4,
@@ -690,7 +724,7 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { beginAtZero: true, title: { display: true, text: '%' } } },
+                    scales: { y: { display: false } },
                     animation: { duration: 1000, easing: 'easeInOutQuad' }
                 }
             });
