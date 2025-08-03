@@ -11,13 +11,15 @@
             padding: 0;
             box-sizing: border-box;
         }
-        body {
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
             font-family: 'Exo 2', sans-serif;
             background: linear-gradient(to bottom, #A8E6CF, #D5F5E3, #E0F7FA);
             color: #333;
             line-height: 1.6;
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
         header {
             background: linear-gradient(135deg, #4CAF50, #2196F3);
@@ -28,38 +30,38 @@
         }
         header h1 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 48px;
+            font-size: clamp(32px, 5vw, 48px);
             margin-bottom: 10px;
         }
         header p {
-            font-size: 24px;
+            font-size: clamp(18px, 3vw, 24px);
             opacity: 0.9;
         }
         nav {
             background: #fff;
-            width: 250px;
+            width: clamp(150px, 20%, 250px);
             height: 100vh;
             position: fixed;
             top: 0;
             left: 0;
             overflow-y: auto;
             box-shadow: 2px 0 6px rgba(0,0,0,0.1);
-            transition: width 0.3s, transform 0.3s;
+            transition: width 0.3s;
             z-index: 1000;
         }
         nav:hover {
-            width: 250px;
+            width: clamp(150px, 20%, 250px);
         }
         nav.minimized {
-            width: 80px;
+            width: clamp(60px, 10%, 80px);
         }
         nav.minimized .nav-links {
             display: none;
         }
         nav.minimized .current-section {
             display: block;
-            padding: 20px;
-            font-size: 14px;
+            padding: 15px;
+            font-size: clamp(12px, 2vw, 14px);
             color: #4CAF50;
             text-align: center;
             font-family: 'Orbitron', sans-serif;
@@ -71,14 +73,14 @@
             width: 100%;
             height: 6px;
             background: #e0e0e0;
-            margin-top: 10px;
+            margin: 10px 0;
             border-radius: 3px;
         }
         nav .progress {
             height: 100%;
             background: #4CAF50;
             width: 0;
-            transition: width 0.2s;
+            transition: width 0.2s ease-out;
             border-radius: 3px;
         }
         nav ul {
@@ -101,17 +103,17 @@
         }
         section {
             padding: 80px 20px;
-            max-width: 1000px;
+            max-width: min(1000px, 80vw);
             margin: 0 auto 30px;
-            margin-left: 270px;
+            margin-left: calc(clamp(150px, 20%, 250px) + 20px);
             background: #fff;
             border-radius: 12px;
-            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.1), -6px -6px 12px rgba(255,255,255,0.6);
         }
         section h2 {
             font-family: 'Orbitron', sans-serif;
             color: #4CAF50;
-            font-size: 36px;
+            font-size: clamp(28px, 4vw, 36px);
             text-align: center;
             margin-bottom: 30px;
         }
@@ -124,12 +126,12 @@
             background: #f9f9f9;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.1), -6px -6px 12px rgba(255,255,255,0.6);
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .card:hover {
             transform: translateY(-8px);
-            box-shadow: 12px 12px 24px rgba(0,0,0,0.15), -12px -12px 24px rgba(255,255,255,0.6);
+            box-shadow: 10px 10px 20px rgba(0,0,0,0.15), -10px -10px 20px rgba(255,255,255,0.7);
         }
         .card h3 {
             font-family: 'Orbitron', sans-serif;
@@ -155,10 +157,11 @@
         }
         .chart {
             width: 100%;
+            max-width: 100%;
             height: 250px;
             border-radius: 12px;
             margin: 25px 0;
-            box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.5);
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(255,255,255,0.6);
             background-size: cover;
             background-position: center;
         }
@@ -177,7 +180,7 @@
             padding: 30px;
             border-radius: 12px;
             margin: 20px 0;
-            box-shadow: 8px 8px 16px rgba(0,0,0,0.1), -8px -8px 16px rgba(255,255,255,0.5);
+            box-shadow: 6px 6px 12px rgba(0,0,0,0.1), -6px -6px 12px rgba(255,255,255,0.6);
         }
         .roi-calculator input {
             padding: 10px;
@@ -207,23 +210,47 @@
             padding: 30px;
             font-size: 16px;
             border-top: 4px solid #4CAF50;
-            margin-left: 250px;
+            margin-left: calc(clamp(150px, 20%, 250px) + 20px);
         }
         @media (max-width: 768px) {
             header h1 { font-size: 32px; }
             header p { font-size: 18px; }
-            section { margin-left: 0; }
+            section { margin-left: 0; margin-right: 20px; }
             section h2 { font-size: 28px; }
-            nav { width: 100%; height: auto; position: sticky; top: 0; }
-            nav.minimized { width: 100%; height: 60px; }
-            nav.minimized .current-section { font-size: 12px; padding: 10px; }
-            nav .progress-bar { margin: 5px 10px; }
-            footer { margin-left: 0; }
-            .content-grid { grid-template-columns: 1fr; }
+            nav { 
+                width: 100%; 
+                height: auto; 
+                position: sticky; 
+                top: 0; 
+                max-height: 100px;
+            }
+            nav.minimized { 
+                width: 100%; 
+                height: 60px; 
+            }
+            nav.minimized .current-section { 
+                font-size: 12px; 
+                padding: 10px; 
+            }
+            nav .progress-bar { 
+                margin: 5px 10px; 
+            }
+            footer { 
+                margin-left: 0; 
+                margin-right: 20px; 
+            }
+            .content-grid { 
+                grid-template-columns: 1fr; 
+            }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
-            section { margin-left: 260px; max-width: 90%; }
-            .card { padding: 20px; }
+            section { 
+                margin-left: calc(clamp(150px, 20%, 250px) + 10px); 
+                max-width: 90%; 
+            }
+            .card { 
+                padding: 20px; 
+            }
         }
     </style>
 </head>
@@ -286,13 +313,13 @@
                 <p>Customization, installation, 5-year warranty, Arad-based maintenance. CE/ISO 14001 compliant for EU markets.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/solar-generator.png')"></div>
+        <div class="chart" style="background-image: url('/Uploads/solar-generator.png')"></div>
     </section>
 
     <section id="competitors">
         <h2>Competitive Edge</h2>
         <p>Outpower EcoFlow (3.6kW, €3,000), Bluetti (2kW, €2,500), and Jackery (1kW, €1,500). Local Arad production saves 15% costs. USPs: 10kW capacity, AI, hybrid options. Target: 5% Romania market by 2030.</p>
-        <div class="chart" style="background-image: url('/uploads/competitor-matrix.png')"></div>
+        <div class="chart" style="background-image: url('/Uploads/competitor-matrix.png')"></div>
     </section>
 
     <section id="business-model">
@@ -315,7 +342,7 @@
                 <p>NPV: €7.3M; IRR: 376%; ROI: 2,139% with grants.</p>
             </div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/revenue-growth.png')"></div>
+        <div class="chart" style="background-image: url('/Uploads/revenue-growth.png')"></div>
     </section>
 
     <section id="grants">
@@ -324,7 +351,7 @@
         <div class="content-grid">
             <div class="card">Funding Split: Grants 40%, Investment 60%</div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/funding-pie.png')"></div>
+        <div class="chart" style="background-image: url('/Uploads/funding-pie.png')"></div>
     </section>
 
     <section id="impact">
@@ -359,7 +386,7 @@
             <button onclick="calculateROI()">Calculate Savings</button>
             <div id="roiResult"></div>
         </div>
-        <div class="chart" style="background-image: url('/uploads/roi-projection.png')"></div>
+        <div class="chart" style="background-image: url('/Uploads/roi-projection.png')"></div>
     </section>
 
     <footer>
@@ -367,6 +394,19 @@
     </footer>
 
     <script>
+        // Debounce function to limit scroll event frequency
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
         // Dynamic Navigation and Progress Bar
         const nav = document.getElementById('nav');
         const currentSection = document.querySelector('.current-section');
@@ -378,21 +418,22 @@
             let current = '';
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                if (rect.top <= window.innerHeight / 2 && rect.bottom >= 0) {
                     current = section.getAttribute('id');
                 }
             });
             currentSection.textContent = current
                 ? document.querySelector(`a[href="#${current}"]`).textContent
                 : 'Scroll to Start';
-            
+
             // Progress Bar
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
-            const progressPercent = Math.min((window.scrollY / totalHeight) * 100, 100);
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progressPercent = Math.min((scrollTop / scrollHeight) * 100, 100);
             progress.style.width = `${progressPercent}%`;
         }
 
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', debounce(() => {
             if (window.scrollY > 100) {
                 nav.classList.add('minimized');
             } else {
@@ -401,7 +442,7 @@
             if (!isScrolling) {
                 updateNav();
             }
-        });
+        }, 10));
 
         // Smooth scroll for nav links
         document.querySelectorAll('nav a').forEach(anchor => {
