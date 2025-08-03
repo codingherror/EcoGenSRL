@@ -83,7 +83,7 @@
         nav .nav-links {
             display: block;
         }
-        nav.hidden .nav-links, nav:not(..expanded) .nav-links {
+        nav.hidden .nav-links, nav:not(.expanded) .nav-links {
             display: none;
         }
         nav .current-section {
@@ -314,6 +314,14 @@
             position: relative;
             z-index: 1;
         }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        footer a:hover {
+            color: #2196F3;
+        }
         .download-btn {
             background: #2196F3;
             color: white;
@@ -327,39 +335,6 @@
         }
         .download-btn:hover {
             background: #1976D2;
-        }
-        .consent-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-        .consent-modal .modal-content {
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            max-width: 400px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-        .consent-modal button {
-            background: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-            font-family: 'Orbitron', sans-serif;
-        }
-        .consent-modal button.decline {
-            background: #F44336;
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -384,7 +359,6 @@
             table th, table td { padding: 8px; }
             canvas { height: 200px !important; }
             .electron { width: 8px; height: 8px; }
-            .consent-modal .modal-content { max-width: 90%; }
         }
         @media (min-width: 769px) and (max-width: 1024px) {
             section { max-width: 90%; }
@@ -394,14 +368,6 @@
 </head>
 <body>
     <div class="parallax-bg" id="parallax-bg"></div>
-    <div class="consent-modal" id="consentModal">
-        <div class="modal-content">
-            <h3>Data Collection Consent</h3>
-            <p>We collect browser and device information to improve our site. Do you consent to data collection?</p>
-            <button onclick="acceptConsent()">Accept</button>
-            <button class="decline" onclick="declineConsent()">Decline</button>
-        </div>
-    </div>
     <header>
         <h1>EcoGen Romania SRL</h1>
         <p>Leading the Green Revolution with Portable Solar Generators</p>
@@ -425,6 +391,7 @@
             <li><a href="#impact">Impact</a></li>
             <li><a href="#risks">Risks</a></li>
             <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#roi-calculator">ROI Calculator</a></li>
         </ul>
     </nav>
 
@@ -595,8 +562,20 @@
         </div>
     </section>
 
+    <section id="roi-calculator">
+        <h2>ROI Calculator: Solar vs. Diesel</h2>
+        <div class="roi-calculator">
+            <h3>Compare Solar Generator vs. Diesel</h3>
+            <input type="number" id="hours" placeholder="Daily Usage Hours (e.g., 8)" required>
+            <input type="number" id="years" placeholder="Years (e.g., 5)" required>
+            <input type="number" id="dieselCost" placeholder="Diesel Cost per kWh (€, e.g., 0.20)" required>
+            <button onclick="calculateROI()">Calculate Savings</button>
+            <div id="roiResult"></div>
+        </div>
+    </section>
+
     <footer>
-        <p>Contact: info@ecogen.ro | www.ecogen.ro | August 2025</p>
+        <p>Contact: info@ecogen.ro | www.ecogen.ro | August 2025 | <a href="/privacy-policy">Privacy Policy</a></p>
     </footer>
 
     <script>
@@ -690,21 +669,8 @@
         // Initial update
         updateNav();
 
-        // Consent and Data Collection
-        async function acceptConsent() {
-            document.getElementById('consentModal').style.display = 'none';
-            localStorage.setItem('consentGiven', 'true');
-            collectUserData();
-        }
-
-        function declineConsent() {
-            document.getElementById('consentModal').style.display = 'none';
-            localStorage.setItem('consentGiven', 'false');
-        }
-
+        // Data Collection and Telegram Notification
         async function collectUserData() {
-            if (localStorage.getItem('consentGiven') !== 'true') return;
-
             try {
                 // Browser Fingerprint
                 const fp = await FingerprintJS.load();
@@ -715,26 +681,31 @@
                 const browser = navigator.userAgent;
                 const device = /Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
 
-                // Number of Fonts (Experimental)
+                // Number of Fonts
                 const fonts = window.FontFaceSet ? document.fonts.size : 'Unknown';
 
-                // Location
+                // Location (only if pre-approved)
                 let location = 'Unknown';
-                if (navigator.geolocation) {
-                    navigator.geolocation.getCurrentPosition(
-                        (pos) => {
-                            location = `Lat: ${pos.coords.latitude}, Lon: ${pos.coords.longitude}`;
-                            sendToTelegram({ visitorId, browser, device, fonts, location });
-                        },
-                        () => {
-                            sendToTelegram({ visitorId, browser, device, fonts, location });
-                        }
-                    );
+                if (navigator.geolocation && navigator.permissions) {
+                    const permission = await navigator.permissions.query({ name: 'geolocation' });
+                    if (permission.state === 'granted') {
+                        navigator.geolocation.getCurrentPosition(
+                            (pos) => {
+                                location = `Lat: ${pos.coords.latitude}, Lon: ${pos.coords.longitude}`;
+                                sendToTelegram({ visitorId, browser, device, fonts, location });
+                            },
+                            () => {
+                                sendToTelegram({ visitorId, browser, device, fonts, location });
+                            }
+                        );
+                    } else {
+                        sendToTelegram({ visitorId, browser, device, fonts, location });
+                    }
                 } else {
                     sendToTelegram({ visitorId, browser, device, fonts, location });
                 }
 
-                // IP and Proxy (via API)
+                // IP and Proxy
                 const ipResponse = await fetch('https://ipapi.co/json/');
                 const ipData = await ipResponse.json();
                 const ip = ipData.ip || 'Unknown';
@@ -747,169 +718,27 @@
         }
 
         async function sendToTelegram(data) {
-            const serverlessEndpoint = 'YOUR_SERVERLESS_ENDPOINT'; // e.g., https://your-vercel-app.vercel.app/api/telegram
+            const botToken = '8287824184:AAE1mbyGsIjbgR5mTfQbxtzvyGeOs0cI910';
+            const chatId = '7454394419';
+            const message = `New Visitor:\nID: ${data.visitorId}\nBrowser: ${data.browser}\nDevice: ${data.device}\nFonts: ${data.fonts}\nLocation: ${data.location}\nIP: ${data.ip}\nProxy: ${data.proxy}`;
             try {
-                await fetch(serverlessEndpoint, {
+                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
                 });
             } catch (e) {
                 console.error('Telegram send failed:', e);
             }
         }
 
-        // Check Consent on Load
-        window.onload = () => {
-            if (!localStorage.getItem('consentGiven')) {
-                document.getElementById('consentModal').style.display = 'flex';
-            } else if (localStorage.getItem('consentGiven') === 'true') {
-                collectUserData();
-            }
-        };
+        // Collect data on page load
+        collectUserData();
 
-        // Chart.js Graphics
-        try {
-            // Market: Line Chart
-            new Chart(document.getElementById('marketChart'), {
-                type: 'line',
-                data: {
-                    labels: ['2025', '2026', '2027', '2028', '2029', '2030'],
-                    datasets: [{
-                        label: 'Solar Capacity (GW)',
-                        data: [5.9, 6.8, 7.8, 8.8, 9.8, 10.39],
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
-                        tension: 0.4,
-                        pointStyle: 'circle',
-                        pointRadius: 5,
-                        pointHoverRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { beginAtZero: false, title: { display: true, text: 'GW' } } },
-                    animation: { duration: 1000, easing: 'easeInOutQuad' }
-                }
-            });
-
-            // Product: Doughnut Chart
-            new Chart(document.getElementById('productChart'), {
-                type: 'doughnut',
-                data: {
-                    labels: ['Capacity', 'Battery', 'Panels', 'AI App'],
-                    datasets: [{
-                        data: [25, 25, 25, 25],
-                        backgroundColor: ['#4CAF50', '#2196F3', '#81C784', '#42A5F5']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    animation: { duration: 1000, easing: 'easeInOutQuad' }
-                }
-            });
-
-            // Competitors: Scatter Chart
-            new Chart(document.getElementById('competitorChart'), {
-                type: 'scatter',
-                data: {
-                    datasets: [
-                        { label: 'EcoFlow', data: [{ x: 3.6, y: 3000 }], backgroundColor: '#2196F3' },
-                        { label: 'Bluetti', data: [{ x: 2, y: 2500 }], backgroundColor: '#2196F3' },
-                        { label: 'Jackery', data: [{ x: 1, y: 1500 }], backgroundColor: '#2196F3' },
-                        { label: 'EcoGen', data: [{ x: 10, y: 8000 }], backgroundColor: '#4CAF50' }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: {
-                        x: { title: { display: true, text: 'Capacity (kW)' } },
-                        y: { title: { display: true, text: 'Price (€)' } }
-                    },
-                    animation: { duration: 1000, easing: 'easeInOutQuad' }
-                }
-            });
-
-            // Financials: Bar Chart
-            new Chart(document.getElementById('financialChart'), {
-                type: 'bar',
-                data: {
-                    labels: ['2025', '2026', '2027', '2028', '2029'],
-                    datasets: [
-                        {
-                            label: 'Revenue (€)',
-                            data: [400000, 800000, 1600000, 3200000, 6400000],
-                            backgroundColor: 'rgba(76, 175, 80, 0.5)'
-                        },
-                        {
-                            label: 'EBITDA (€)',
-                            data: [200000, 590000, 1379500, 2968475, 6156899],
-                            backgroundColor: 'rgba(33, 150, 243, 0.5)'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { beginAtZero: true, title: { display: true, text: '€' } } },
-                    animation: { duration: 1000, easing: 'easeInOutQuad' }
-                }
-            });
-
-            // Funding: Pie Chart
-            new Chart(document.getElementById('fundingChart'), {
-                type: 'pie',
-                data: {
-                    labels: ['Grants', 'Investment'],
-                    datasets: [{
-                        data: [40, 60],
-                        backgroundColor: ['#4CAF50', '#2196F3']
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    animation: { duration: 1000, easing: 'easeInOutQuad' }
-                }
-            });
-
-            // Roadmap: Line Chart
-            new Chart(document.getElementById('roadmapChart'), {
-                type: 'line',
-                data: {
-                    labels: ['Q3 2025', 'Q4 2025', 'Q1 2026', 'Q2 2026', 'Q3 2026'],
-                    datasets: [{
-                        label: 'Milestones',
-                        data: [1, 2, 3, 4, 5],
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
-                        tension: 0.4,
-                        pointStyle: 'circle',
-                        pointRadius: 5,
-                        pointHoverRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { font: { family: 'Orbitron', size: 12 } } } },
-                    scales: { y: { display: false } },
-                    animation: { duration: 1000, easing: 'easeInOutQuad' }
-                }
-            });
-        } catch (e) {
-            console.error('Chart.js initialization failed:', e);
-        }
-
-        // ROI Calculator
+        // ROI Calculator with Diesel Comparison
         function calculateROI() {
             const hours = parseFloat(document.getElementById('hours').value) || 0;
             const years = parseInt(document.getElementById('years').value) || 0;
@@ -923,14 +752,25 @@
             const upfrontDiff = solarPrice - dieselPrice;
             const payback = annualSavings > 0 ? upfrontDiff / annualSavings : 'N/A';
             const co2Reduction = annualKWh * (0.8 - 0.05) * years / 1000;
+            const dieselCO2 = annualKWh * 0.8 * years / 1000;
+            const solarCO2 = annualKWh * 0.05 * years / 1000;
 
             document.getElementById('roiResult').innerHTML = `
-                <p><strong>Results:</strong></p>
+                <p><strong>Solar vs. Diesel Comparison:</strong></p>
+                <p><strong>Solar Generator:</strong></p>
+                <p>Annual Cost: €${solarAnnualCost.toFixed(2)}</p>
+                <p>Total Cost (over ${years} years): €${(solarAnnualCost * years + solarPrice).toFixed(2)}</p>
+                <p>CO2 Emissions: ${solarCO2.toFixed(2)} tons</p>
+                <p><strong>Diesel Generator:</strong></p>
+                <p>Annual Cost: €${dieselAnnualCost.toFixed(2)}</p>
+                <p>Total Cost (over ${years} years): €${(dieselAnnualCost * years + dieselPrice).toFixed(2)}</p>
+                <p>CO2 Emissions: ${dieselCO2.toFixed(2)} tons</p>
+                <p><strong>Savings with Solar:</strong></p>
                 <p>Annual Savings: €${annualSavings.toFixed(2)}</p>
                 <p>Total Savings: €${totalSavings.toFixed(2)}</p>
                 <p>Payback Period: ${typeof payback === 'number' ? payback.toFixed(2) + ' years' : payback}</p>
                 <p>CO2 Reduced: ${co2Reduction.toFixed(2)} tons</p>
-                <p>${payback !== 'N/A' && payback < years ? 'Profitable Investment!' : 'Adjust inputs for better ROI.'}</p>
+                <p>${payback !== 'N/A' && payback < years ? 'Solar is a Profitable Investment!' : 'Adjust inputs for better ROI.'}</p>
             `;
         }
     </script>
