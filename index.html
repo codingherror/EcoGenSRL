@@ -36,35 +36,40 @@
         }
         nav {
             background: #fff;
-            padding: 15px 20px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            position: sticky;
+            width: 250px;
+            height: 100vh;
+            position: fixed;
             top: 0;
+            left: 0;
+            box-shadow: 2px 0 6px rgba(0,0,0,0.1);
+            transition: width 0.3s, transform 0.3s;
             z-index: 1000;
-            text-align: center;
-            transition: padding 0.3s;
         }
         nav.minimized {
-            padding: 10px 20px;
+            width: 60px;
         }
-        nav.minimized .nav-links {
+        nav.hidden {
+            transform: translateX(-250px);
+        }
+        nav.minimized .nav-links, nav.hidden .nav-links {
             display: none;
-        }
-        nav.minimized .current-section {
-            display: block;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 16px;
-            color: #4CAF50;
         }
         nav .current-section {
             display: none;
+            padding: 20px 10px;
+            font-size: 14px;
+            color: #4CAF50;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+        nav.minimized .current-section, nav.hidden .current-section {
+            display: block;
         }
         nav .progress-bar {
             width: 100%;
-            max-width: 800px;
             height: 6px;
             background: #e0e0e0;
-            margin: 10px auto;
+            margin: 10px 0;
             border-radius: 3px;
         }
         nav .progress {
@@ -74,15 +79,40 @@
             transition: width 0.2s;
             border-radius: 3px;
         }
+        nav .toggle-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+        }
+        nav .open-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+            font-family: 'Orbitron', sans-serif;
+        }
+        nav.hidden .open-btn {
+            display: block;
+        }
         nav ul {
             list-style: none;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+            padding: 20px;
         }
         nav li {
-            margin: 0;
+            margin: 15px 0;
         }
         nav a {
             text-decoration: none;
@@ -90,11 +120,10 @@
             font-family: 'Orbitron', sans-serif;
             font-weight: 600;
             font-size: 16px;
-            transition: color 0.3s, transform 0.2s;
+            transition: color 0.3s;
         }
         nav a:hover {
             color: #2196F3;
-            transform: scale(1.1);
         }
         section {
             padding: 60px 20px;
@@ -230,9 +259,11 @@
             header h1 { font-size: 30px; }
             header p { font-size: 18px; }
             section h2 { font-size: 26px; }
-            nav ul { gap: 10px; }
-            nav.minimized { padding: 8px 10px; }
-            nav.minimized .current-section { font-size: 14px; }
+            nav { width: 100%; height: auto; position: fixed; top: 0; left: 0; }
+            nav.minimized { width: 100%; height: 60px; }
+            nav.hidden { transform: translateX(0); height: 60px; }
+            nav.minimized .current-section, nav.hidden .current-section { font-size: 12px; padding: 10px; }
+            nav .open-btn { left: 10px; top: 10px; }
             .content-grid { grid-template-columns: 1fr; }
             .card { padding: 15px; }
             table { font-size: 14px; }
@@ -251,6 +282,8 @@
     </header>
 
     <nav id="nav">
+        <button class="toggle-btn" onclick="toggleNav()">X</button>
+        <button class="open-btn" onclick="openNav()">☰</button>
         <div class="current-section">Scroll to Start</div>
         <div class="progress-bar"><div class="progress"></div></div>
         <ul class="nav-links">
@@ -409,6 +442,17 @@
     </footer>
 
     <script>
+        // Navigation Toggle
+        function toggleNav() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('hidden');
+        }
+        function openNav() {
+            const nav = document.getElementById('nav');
+            nav.classList.remove('hidden');
+            nav.classList.add('minimized');
+        }
+
         // Dynamic Navigation and Progress Bar
         const nav = document.getElementById('nav');
         const currentSection = document.querySelector('.current-section');
@@ -429,15 +473,15 @@
                 : 'Scroll to Start';
             
             // Progress Bar
-            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
             const progressPercent = Math.min((window.scrollY / totalHeight) * 100, 100);
             progress.style.width = `${progressPercent}%`;
         }
 
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 100 && !nav.classList.contains('hidden')) {
                 nav.classList.add('minimized');
-            } else {
+            } else if (window.scrollY <= 100 && !nav.classList.contains('hidden')) {
                 nav.classList.remove('minimized');
             }
             if (!isScrolling) {
@@ -479,4 +523,14 @@
             const co2Reduction = annualKWh * (0.8 - 0.05) * years / 1000;
 
             document.getElementById('roiResult').innerHTML = `
-                <p><strong>Results:</
+                <p><strong>Results:</strong></p>
+                <p>Annual Savings: €${annualSavings.toFixed(2)}</p>
+                <p>Total Savings: €${totalSavings.toFixed(2)}</p>
+                <p>Payback Period: ${payback.toFixed(2)} years</p>
+                <p>CO2 Reduced: ${co2Reduction.toFixed(2)} tons</p>
+                <p>${payback < years ? 'Profitable Investment!' : 'Adjust usage for better ROI.'}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
